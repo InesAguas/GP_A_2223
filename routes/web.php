@@ -25,5 +25,7 @@ Route::get('/login', function() {
 
 Route::post('/login', [UserController::class, 'login']);
 
-Route::get('/produtos', [ProdutoController::class, 'verProdutos'])->middleware('admin');
+Route::get('/produtos', [ProdutoController::class, 'verProdutos'])->middleware(['auth','admin']);
+
+Route::get('/logout', [UserController::class, 'logout'])->middleware(['auth']);
 
