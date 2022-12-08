@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProdutoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,6 @@ Route::get('/login', function() {
 });
 
 Route::post('/login', [UserController::class, 'login']);
+
+Route::get('/produtos', [ProdutoController::class, 'verProdutos'])->middleware('admin');
+
