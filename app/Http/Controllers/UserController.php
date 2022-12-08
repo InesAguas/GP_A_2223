@@ -25,4 +25,16 @@ class UserController extends Controller
         }
     }
 
+    public function registo(Request $request) {
+
+    }
+
+    public function verPerfil(Request $request) {
+        
+    }
+
+    public function verUtilizadores(Request $request) {
+
+    }
+
 }
