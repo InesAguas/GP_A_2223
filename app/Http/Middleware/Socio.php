@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Admin
+class Socio
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->u_tipo == 1) {
+        if(Auth::user()->u_tipo == 2 ||Auth::user()->u_tipo == 1) {
             return $next($request);
         }
         return redirect('/login');
