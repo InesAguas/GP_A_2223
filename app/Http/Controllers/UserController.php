@@ -20,9 +20,18 @@ class UserController extends Controller
         ]);
         
         if (Auth::attempt($credentials)) {
+            $user = User::where('email', $request->email)->first();
+            Auth::login($user);
             $request->session()->regenerate();
-            return redirect()->intended('welcome');
+
+            if($user->u_tipo == 1) {
+                return redirect('produtos');
+            }
+            return redirect('login');
         }
+
+        return back()->withInput();
+        
     }
 
     public function registo(Request $request) {
