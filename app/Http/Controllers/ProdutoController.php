@@ -11,7 +11,17 @@ class ProdutoController extends Controller
     //
 
     public function verProdutos() {
-        return view('produtossocios');
+
+        $user = Auth::user();
+
+        if($user->u_tipo == 1) {
+            $produtos = Produto::all();
+        } else {
+            $produtos = Produto::where('u_id', $user->u_id);
+        }
+
+        return view('produtossocios')
+                ->with('produtos', $produtos);
     }
 
 }
