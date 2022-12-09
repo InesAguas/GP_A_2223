@@ -24,10 +24,15 @@ Route::get('/', function () {
 Route::get('/login', function() {
     return view('autenticacao');
 });
-
+//route para aceder à pagina de registar
+Route::get('/registar', function() {
+    return view('registo.blade');
+});
 //routes de login e logout
 Route::post('/login', [UserController::class, 'login']);
 Route::get('/logout', [UserController::class, 'logout'])->middleware(['auth']);
+//routes de registar
+Route::POST('/registar', [UserController::class, 'registar']);
 
 //grupo de routes que precisam de verificar se existe alguem autenticado e se é administrador
 Route::middleware(['auth', 'admin'])->group(function () {
