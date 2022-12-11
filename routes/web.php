@@ -26,7 +26,7 @@ Route::get('/login', function() {
 });
 //route para aceder à pagina de registar
 Route::get('/registar', function() {
-    return view('registo.blade');
+    return view('registo');
 });
 //routes de login e logout
 Route::post('/login', [UserController::class, 'login']);
