@@ -25,6 +25,8 @@
         <input type='number' name='stock'><br>
         <label for="descricao">Indique a descrição do produto:</label><br>
         <input type='text' name='descricao'><br>
+        <label for="imagens">Indique as imagens do produto: </label>
+        <input type="file"  accept="image/gif, image/jpeg, image/png" name="imagens" multiple><br>
         <input type='submit' value='Submit'><br>
     </form>
 </div>
