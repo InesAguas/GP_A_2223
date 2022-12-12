@@ -29,7 +29,7 @@ class UserController extends Controller
             }
             return redirect('login');
         }
-
+        
         return back()->withInput();
         
     }

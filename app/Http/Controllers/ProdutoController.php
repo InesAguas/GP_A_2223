@@ -24,4 +24,29 @@ class ProdutoController extends Controller
                 ->with('produtos', $produtos);
     }
 
+    public function criarProduto(Request $request) {
+
+        $data = $request->validate([
+            'nome' => 'required',
+            'categoria' => 'required',
+            'preco' => 'required',
+            'stock' => 'required',
+            'descricao' => 'required'
+        ]);
+
+        $produto = new Produto();
+        
+        $produto->u_id = Auth::user()->u_id;
+        $produto->p_nome = $data['nome'];
+        $produto->p_categoria = $data['categoria'];
+        $produto->p_preco = $data['preco'];
+        $produto->p_descricao = $data['descricao'];
+        $produto->p_stock = $data['stock'];
+
+        $produto->save();
+
+        return redirect('/produtos');
+        //ja esta a guardar mas falta as imagens e o return correto.
+    }
+
 }
