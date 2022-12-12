@@ -28,6 +28,9 @@ Route::get('/login', function() {
 Route::get('/registar', function() {
     return view('registo');
 });
+
+
+
 //routes de login e logout
 Route::post('/login', [UserController::class, 'login']);
 Route::get('/logout', [UserController::class, 'logout'])->middleware(['auth']);
@@ -36,11 +39,16 @@ Route::POST('/registar', [UserController::class, 'registar']);
 
 //grupo de routes que precisam de verificar se existe alguem autenticado e se é administrador
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/produtos', [ProdutoController::class, 'verProdutos']);
+    
 });
 
 //grupo de routes que precisam de verificar se existe alguem autenticado e se é socio
 Route::middleware(['auth', 'socio'])->group(function () {
+    Route::get('/criarproduto', function() {
+        return view('criarproduto');
+    });
+    Route::get('/produtos', [ProdutoController::class, 'verProdutos']);
+    Route::post('/criarproduto', [ProdutoController::class, 'criarProduto']);
 });
 
 //grupo de routes que precisam de verificar se existe alguem autenticado e se é cliente
