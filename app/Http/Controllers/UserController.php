@@ -45,6 +45,34 @@ class UserController extends Controller
 
     public function registo(Request $request) {
 
+        $data = $request->validate([
+            'nome' => ['required'],
+            'morada' => ['required'],
+            'email' => ['required'],
+            'contribuinte' => ['required'],
+            'password' => ['required'],
+            'contacto' => ['required'],
+            'confirm_password' => ['required'],
+            'data_nascimento' => ['required']
+        ]);
+
+        $utilizador = new User();
+        $utilizador->email = $data['email'];
+        $utilizador->password = Hash::make($data['password']);
+        $utilizador->u_tipo = 3;
+        $utilizador->u_nome = $data['nome'];
+        $utilizador->u_morada = $data['morada'];
+        $utilizador->u_contribuinte = $data['contribuinte'];
+        $utilizador->u_telefone = $data['contacto'];
+        $utilizador->u_data_nascimento = $data['data_nascimento'];
+        $utilizador->u_estado = 'ativo';
+
+        $utilizador->save();
+
+        Auth::login($utilizador);
+
+        return redirect("/");
+
     }
 
     public function verPerfil(Request $request) {
