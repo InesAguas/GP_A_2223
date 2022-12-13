@@ -7,7 +7,7 @@
         <form method="POST" action="/login">
             @csrf
             <label for="email">Email</label><br>
-            <input type='email' name='email'><br>
+            <input type='email' name='email' value={{old('email')}}><br>
             <label for="password">Password</label><br>
             <input type='password' name='password'><br>
             <input type='submit' class='button' name='submit_login' value='Login'><br>
@@ -26,7 +26,7 @@
     </div>
     
     @if ($errors->any())
-        <div class="alert alert-danger">
+        <div class="">
             @foreach ($errors->all() as $error)
                 {{ $error }}<br>
             @endforeach

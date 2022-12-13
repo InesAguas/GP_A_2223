@@ -14,10 +14,16 @@ class UserController extends Controller
     //funcao para fazer login
     public function login(Request $request) {
 
-        //verifica que nenhum dos campos esta vazio
-        $credentials = $request->validate([
+        //verifica que nenhum dos campos esta vazio e que o email é valido
+        $credentials = $request->validate(
+        [
             'email' => ['required', 'email'],
             'password' => ['required'],
+        ],
+        [
+            'email.required' => 'Tem de introduzir um email.',
+            'email.email' => 'O email é inválido.',
+            'password.required' => 'Tem de introduzir uma password.'
         ]);
 
         //faltam as verificacoes para confirmar que a conta esta ativa
@@ -53,10 +59,10 @@ class UserController extends Controller
     }
 
     public function registo(Request $request) {
-
         //faltam algumas validacoes
-        $data = $request->validate([
-            'nome' => ['required', 'string'],
+        $data = $request->validate(
+        [
+            'nome' => ['required', 'string', "regex:/^[\p{L}]{2,}\s[\p{L}]{2,}\s?([\p{L}]{2,})?$/u"],
             'morada' => ['required'],
             'email' => ['required', 'email'],
             'contribuinte' => ['required', 'number'],
@@ -95,6 +101,19 @@ class UserController extends Controller
 
     public function verUtilizadores(Request $request) {
 
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'email.required' => 'dsafdsaf',
+            'password.required' => 'A message is required',
+        ];
     }
 
 }
