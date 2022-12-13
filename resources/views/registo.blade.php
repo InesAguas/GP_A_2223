@@ -24,6 +24,14 @@
         <input type='date' name='data_nascimento'><br>
         <input type='submit' value='Confirmar'><br>
     </form>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            @foreach ($errors->all() as $error)
+                {{ $error }}<br>
+            @endforeach
+        </div>
+    @endif
 </div>
 
 @endsection
