@@ -13,7 +13,7 @@
 @endif
 
 <div class="container2">
-    <form method="POST" action="/criarproduto">
+    <form method="POST" action="/criarproduto" enctype="multipart/form-data">
         @csrf
         <label for="nome">Indique o nome do produto:</label><br>
         <input type='text' name='nome'><br>
@@ -25,6 +25,9 @@
         <input type='number' name='stock'><br>
         <label for="descricao">Indique a descrição do produto:</label><br>
         <input type='text' name='descricao'><br>
+        <label for="imagens">Indique as imagens do produto: </label>
+        <input type="file"  accept="image/jpeg, image/png" name="imagens[]" multiple><br>
+        //falta usar JS para limitar o numero de imagens para 7
         <input type='submit' value='Submit'><br>
     </form>
 </div>
