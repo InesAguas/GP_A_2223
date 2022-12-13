@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produto;
+use App\Models\Imagem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,7 +32,8 @@ class ProdutoController extends Controller
             'categoria' => 'required',
             'preco' => 'required',
             'stock' => 'required',
-            'descricao' => 'required'
+            'descricao' => 'required',
+            'imagens' => 'required'
         ]);
 
         $produto = new Produto();
@@ -44,6 +46,17 @@ class ProdutoController extends Controller
         $produto->p_stock = $data['stock'];
 
         $produto->save();
+
+        $i = 0;
+
+        foreach($data['imagens'] as $image) {
+            $imagename = $produto->p_id . '_' . ++$i . '.' . $image->extension();
+            $image->move(public_path('img/produtos'), $imagename);
+            $imagem = new Imagem();
+            $imagem->i_nome = $imagename;
+            $imagem->p_id = $produto->p_id;
+            $imagem->save();
+        }
 
         return redirect('/produtos');
         //ja esta a guardar mas falta as imagens e o return correto.
