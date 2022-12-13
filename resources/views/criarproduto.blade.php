@@ -28,7 +28,7 @@
         <label for="imagens">Indique as imagens do produto: </label>
         <input type="file"  accept="image/jpeg, image/png" name="imagens[]" multiple><br>
         //falta usar JS para limitar o numero de imagens para 7
-        <input type='submit' value='Submit'><br>
+        <input type='submit' value='Confirmar'><br>
     </form>
 </div>
 @endsection
