@@ -17,25 +17,27 @@ use App\Http\Controllers\ProdutoController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('perfil');
 });
+
 
 //route para aceder à pagina de login
 Route::get('/login', function() {
     return view('autenticacao');
 });
+
 //route para aceder à pagina de registar
 Route::get('/registar', function() {
     return view('registo');
 });
 
 
-
 //routes de login e logout
 Route::post('/login', [UserController::class, 'login']);
 Route::get('/logout', [UserController::class, 'logout'])->middleware(['auth']);
+
 //routes de registar
-Route::POST('/registar', [UserController::class, 'registar']);
+Route::post('/registar', [UserController::class, 'registo']);
 
 //grupo de routes que precisam de verificar se existe alguem autenticado e se é administrador
 Route::middleware(['auth', 'admin'])->group(function () {
