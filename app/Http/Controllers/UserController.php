@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 //controller para os utilizadores
 
@@ -80,7 +81,8 @@ class UserController extends Controller
     }
 
     public function verUtilizadores(Request $request) {
-
+        $users = User::all();
+        return view('utilizadores', compact('users'));
     }
 
 }

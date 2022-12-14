@@ -39,6 +39,9 @@ Route::get('/logout', [UserController::class, 'logout'])->middleware(['auth']);
 //routes de registar
 Route::post('/registar', [UserController::class, 'registo']);
 
+//routes de ver utilizadores
+Route::get('/utilizadores', [UserController::class, 'verUtilizadores']);
+
 //grupo de routes que precisam de verificar se existe alguem autenticado e se é administrador
 Route::middleware(['auth', 'admin'])->group(function () {
     
