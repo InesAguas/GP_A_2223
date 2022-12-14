@@ -58,7 +58,7 @@ class ProdutoController extends Controller
             $imagem->save();
         }
 
-        return redirect('/produtos');
+        return redirect('/produtos/verprodutos');
         //ja esta a guardar mas falta as imagens e o return correto.
     }
 

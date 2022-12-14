@@ -20,6 +20,6 @@ class Socio
         if(Auth::user()->u_tipo == 2 ||Auth::user()->u_tipo == 1) {
             return $next($request);
         }
-        return redirect('/login');
+        return redirect('/utilizador/login');
     }
 }

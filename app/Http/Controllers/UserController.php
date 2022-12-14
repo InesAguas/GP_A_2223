@@ -38,9 +38,9 @@ class UserController extends Controller
             $request->session()->regenerate();
 
             if($user->u_tipo == 1) {
-                return redirect('produtos');
+                return redirect('/utilizador/produtos');
             }
-            return redirect('login');
+            return redirect('/utilizador/login');
         }
         
         //se nao fizer login faz return...
@@ -56,7 +56,7 @@ class UserController extends Controller
 
         //redirect para a pagina de login
         //MUDAR, deve dar redirect para a pagina inicial /
-        return redirect('/login');
+        return redirect('/utilizador/login');
     }
 
     public function registo(Request $request) {

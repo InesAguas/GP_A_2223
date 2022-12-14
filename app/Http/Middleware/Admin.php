@@ -20,6 +20,6 @@ class Admin
         if(Auth::user()->u_tipo == 1) {
             return $next($request);
         }
-        return redirect('/login');
+        return redirect('/utilizador/login');
     }
 }

@@ -22,7 +22,7 @@
             <p>.... e muito mais</p>
         </ul>
         <h3>Não percas mais tempo!</h3>
-        <a href="{{ url('/')}}" ><button type="button">Regista-te</button></a>
+        <a href="{{ url('/utilizador/registo')}}" ><button type="button">Regista-te</button></a>
     </div>
     
     @if ($errors->any())

@@ -18,47 +18,44 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return view('utilizadores/perfil');
+    return view('paginainicioclientes');
 });
 
 //route para aceder à pagina de login
-Route::get('/login', function() {
+Route::get('/utilizador/login', function() {
     return view('utilizadores/autenticacao');
 });
 
 //route para aceder à pagina de registar
-Route::get('/registar', function() {
+Route::get('/utilizador/registo', function() {
     return view('utilizadores/registo');
 });
 
 
 //routes de login e logout
-Route::post('/login', [UserController::class, 'login']);
-Route::get('/logout', [UserController::class, 'logout'])->middleware(['auth']);
+Route::post('/utilizador/login', [UserController::class, 'login']);
+Route::get('/utilizador/logout', [UserController::class, 'logout'])->middleware(['auth']);
 
 //routes de registar
-Route::post('/registar', [UserController::class, 'registo']);
-
-//routes de ver utilizadores
-Route::get('/utilizadores', [UserController::class, 'verUtilizadores']);
+Route::post('/utilizador/registar', [UserController::class, 'registo']);
 
 //grupo de routes que precisam de verificar se existe alguem autenticado e se é administrador
 Route::middleware(['auth', 'admin'])->group(function () {
-    
+    Route::get('/administracao/utilizadores', [UserController::class, 'verUtilizadores']);
 });
 
 //grupo de routes que precisam de verificar se existe alguem autenticado e se é socio
 Route::middleware(['auth', 'socio'])->group(function () {
-    Route::get('/criarproduto', function() {
+    Route::get('/produtos/criarproduto', function() {
         return view('produtos/criarproduto');
     });
-    Route::get('/produtos', [ProdutoController::class, 'verProdutos']);
-    Route::post('/criarproduto', [ProdutoController::class, 'criarProduto']);
+    Route::get('/produtos/verprodutos', [ProdutoController::class, 'verProdutos']);
+    Route::post('/produtos/criarproduto', [ProdutoController::class, 'criarProduto']);
 });
 
 //grupo de routes que precisam de verificar se existe alguem autenticado e se é cliente
 Route::middleware(['auth', 'cliente'])->group(function () {
-    Route::get('/cenas', function() {
+    Route::get('/utilizador/perfil', function() {
         return view('utilizadores/perfil');
     });
 });

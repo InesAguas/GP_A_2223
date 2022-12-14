@@ -20,6 +20,6 @@ class Cliente
         if(Auth::user()->u_tipo == 3) {
             return $next($request);
         }
-        return redirect('/login');
+        return redirect('/utilizador/login');
     }
 }
