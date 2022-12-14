@@ -20,7 +20,7 @@
                             <h2>Registar</h2>
                         </div>
                     </div>
-                    <form method="POST" action="/registar">
+                    <form method="POST" action="/utilizador/registar">
                         @csrf
                         <div class="row p-3">
                             <div class="col-6">

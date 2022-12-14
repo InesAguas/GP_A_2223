@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return view('paginainicioclientes');
+    return view('utilizadores/paginainicioclientes');
 });
 
 //route para aceder à pagina de login

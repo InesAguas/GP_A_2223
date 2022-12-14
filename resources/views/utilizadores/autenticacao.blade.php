@@ -18,7 +18,7 @@
                         <h2>Iniciar Sessão</h2>
                     </div>
                 </div>
-                <form method="POST" action="/login">
+                <form method="POST" action="/utilizador/login">
                     @csrf
                     <div class="row p-3">
                         <div class="col">
