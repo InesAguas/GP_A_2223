@@ -120,7 +120,7 @@ class UserController extends Controller
 
     public function verUtilizadores(Request $request) {
         $users = User::all();
-        return view('utilizadores')->with('users', $users);
+        return view('utilizadores/utilizadores')->with('users', $users);
     }
 
     /**

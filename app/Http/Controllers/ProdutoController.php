@@ -21,7 +21,7 @@ class ProdutoController extends Controller
             $produtos = Produto::where('u_id', $user->u_id);
         }
 
-        return view('produtossocios')
+        return view('produtos/produtossocios')
                 ->with('produtos', $produtos);
     }
 
