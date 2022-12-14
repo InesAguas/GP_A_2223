@@ -13,7 +13,7 @@
 @endif
 
 <div class="container2">
-    <form method="POST" action="/criarproduto" enctype="multipart/form-data">
+    <form method="POST" action="/produtos/criarproduto" enctype="multipart/form-data">
         @csrf
         <label for="nome">Indique o nome do produto:</label><br>
         <input type='text' name='nome'><br>

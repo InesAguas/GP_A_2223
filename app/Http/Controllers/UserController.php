@@ -38,7 +38,7 @@ class UserController extends Controller
             $request->session()->regenerate();
 
             if($user->u_tipo == 1) {
-                return redirect('/utilizador/produtos');
+                return redirect('/produtos/verprodutos');
             }
             return redirect('/utilizador/login');
         }

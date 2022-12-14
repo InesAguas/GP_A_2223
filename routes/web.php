@@ -17,9 +17,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('utilizadores/paginainicioclientes');
-});
+Route::get('/{pagina?}', [ProdutoController::class, 'paginaInicial']);
 
 //route para aceder à pagina de login
 Route::get('/utilizador/login', function() {

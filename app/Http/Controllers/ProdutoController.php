@@ -62,4 +62,23 @@ class ProdutoController extends Controller
         //ja esta a guardar mas falta as imagens e o return correto.
     }
 
+    public function paginaInicial(Request $request) {
+
+        if($request->pagina == null) {
+            $request->pagina = 1;
+        }
+        
+        $pagina = $request->pagina;
+
+        $user = Auth::user();
+        $produtos = Produto::all();
+
+        foreach($produtos as $produto) {
+            $produto->p_imagem = Imagem::where('p_id', '=', $produto->p_id)->first()->i_nome;
+        }
+
+        return view('utilizadores/paginainicioclientes')->with('user', $user)->with('produtos', $produtos);
+
+    }
+
 }
