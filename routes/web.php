@@ -18,17 +18,17 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return view('perfil');
+    return view('utilizadores/perfil');
 });
 
 //route para aceder à pagina de login
 Route::get('/login', function() {
-    return view('autenticacao');
+    return view('utilizadores/autenticacao');
 });
 
 //route para aceder à pagina de registar
 Route::get('/registar', function() {
-    return view('registo');
+    return view('utilizadores/registo');
 });
 
 
@@ -50,7 +50,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 //grupo de routes que precisam de verificar se existe alguem autenticado e se é socio
 Route::middleware(['auth', 'socio'])->group(function () {
     Route::get('/criarproduto', function() {
-        return view('criarproduto');
+        return view('produtos/criarproduto');
     });
     Route::get('/produtos', [ProdutoController::class, 'verProdutos']);
     Route::post('/criarproduto', [ProdutoController::class, 'criarProduto']);
@@ -59,7 +59,7 @@ Route::middleware(['auth', 'socio'])->group(function () {
 //grupo de routes que precisam de verificar se existe alguem autenticado e se é cliente
 Route::middleware(['auth', 'cliente'])->group(function () {
     Route::get('/cenas', function() {
-        return view('perfil');
+        return view('utilizadores/perfil');
     });
 });
 

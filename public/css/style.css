@@ -1,0 +1,36 @@
+
+*{
+    /*background-color: #e9f9f2;
+    border: 1px solid;*/
+}
+a{
+    text-decoration: none !important;
+}
+
+.navbar, .offcanvas-header, nav .container-fluid,.offcanvas-title, .color-green-1 {
+    background-color: #66d2a5 !important;
+}
+
+.color-green-2{
+    background-color:#1c501c !important ;
+}
+
+.ml-n1 {
+    margin-top: -0.25rem !important;
+}
+
+body{
+    background-color: #e9f9f2 !important;
+}
+
+.banner{
+    height: 180px;
+}
+
+.stock{
+    color: green;
+}
+
+.esgotado{
+    color: red;
+}
