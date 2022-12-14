@@ -7,9 +7,9 @@
         <form method="POST" action="/login">
             @csrf
             <label for="email">Email</label><br>
-            <input type='email' name='email' placeholder='Email'><br>
+            <input type='email' name='email' value={{old('email')}}><br>
             <label for="password">Password</label><br>
-            <input type='password' name='password' placeholder='Password'><br>
+            <input type='password' name='password'><br>
             <input type='submit' class='button' name='submit_login' value='Login'><br>
         </form>
     </div>
@@ -24,6 +24,14 @@
         <h3>Não percas mais tempo!</h3>
         <a href="{{ url('/')}}" ><button type="button">Regista-te</button></a>
     </div>
+    
+    @if ($errors->any())
+        <div class="">
+            @foreach ($errors->all() as $error)
+                {{ $error }}<br>
+            @endforeach
+        </div>
+    @endif
 </div>
 @endsection
 

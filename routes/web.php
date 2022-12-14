@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProdutoController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +17,9 @@ use App\Http\Controllers\ProdutoController;
 |
 */
 
-
 Route::get('/', function () {
     return view('perfil');
 });
-
 
 //route para aceder à pagina de login
 Route::get('/login', function() {
@@ -58,4 +58,27 @@ Route::middleware(['auth', 'socio'])->group(function () {
 
 //grupo de routes que precisam de verificar se existe alguem autenticado e se é cliente
 Route::middleware(['auth', 'cliente'])->group(function () {
+    Route::get('/cenas', function() {
+        return view('perfil');
+    });
 });
+
+
+
+
+//routes por causa da verificação de email, ainda nao estao funcionais
+Route::get('/email/verify', function () {
+    return view('perfil');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+ 
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+ 
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
