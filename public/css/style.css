@@ -3,11 +3,12 @@
     /*background-color: #e9f9f2;
     border: 1px solid;*/
 }
+
 a{
     text-decoration: none !important;
 }
 
-.navbar, .offcanvas-header, nav .container-fluid,.offcanvas-title, .color-green-1 {
+.navbar, .offcanvas-header, nav .container-fluid,.offcanvas-title{
     background-color: #66d2a5 !important;
 }
 

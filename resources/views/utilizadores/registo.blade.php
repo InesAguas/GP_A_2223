@@ -1,37 +1,70 @@
 @extends('master')
 
+@section('header')
+<nav class="navbar ">
+    <div class="container-fluid ">
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+  </nav>
+@endsection
+
 @section('content')
 
-<div class="container2">
-    <h2>Registar</h2>
-    <form method="POST" action="/registar">
-        @csrf
-        <label for="nome">Nome de utilizador:</label><br>
-        <input type='text' name='nome' value={{old('nome')}}><br>
-        <label for="morada">Morada:</label><br>
-        <input type='text' name='morada' value={{old('morada')}}><br>
-        <label for="email">Email:</label><br>
-        <input type='email' name='email' value={{old('email')}}><br>
-        <label for="contribuinte">Nº contribuinte:</label><br>
-        <input type='number' name='contribuinte' value={{old('contribuinte')}}><br>
-        <label for="password">Password:</label><br>
-        <input type='password' name='password'><br>
-        <label for="contacto">Nº contacto:</label><br>
-        <input type='number' name='contacto' value={{old('contacto')}}><br>
-        <label for="confirm_password">Re-enter password:</label><br>
-        <input type='password' name='confirm_password'><br>
-        <label for="data_nascimento">Data de nascimento:</label><br>
-        <input type='date' name='data_nascimento' value={{old('data_nascimento')}}><br>
-        <input type='submit' value='Confirmar'><br>
-    </form>
-
-    @if ($errors->any())
-        <div class="">
-            @foreach ($errors->all() as $error)
-                {{ $error }}<br>
-            @endforeach
+<main class="container">
+    <div class="row mt-5 mb-5 ">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col p-3">
+                            <h2>Registar</h2>
+                        </div>
+                    </div>
+                    <form method="POST" action="/registar">
+                        @csrf
+                        <div class="row p-3">
+                            <div class="col-6">
+                                <label for="nome" class="form-label">Nome de utilizador:</label><br>
+                                <input type='text' class="form-control mb-3 bg-light" name='nome' value={{old('nome')}}><br>
+                                <label for="email" class="form-label">Email:</label><br>
+                                <input type='email' class="form-control mb-3 bg-light" name='email' value={{old('email')}}><br>
+                                
+                                <label for="password" class="form-label">Password:</label><br>
+                                <input type='password' class="form-control mb-3 bg-light" name='password'><br>
+                                <label for="confirm_password" class="form-label">Re-enter password:</label><br>
+                                <input type='password' class="form-control mb-3 bg-light" name='confirm_password'><br>
+                            </div>
+                            <div class="col-6">
+                                <label for="morada" class="form-label">Morada:</label><br>
+                                <input type='text' class="form-control mb-3 bg-light" name='morada' value={{old('morada')}}><br>
+                                <label for="contribuinte" class="form-label">Nº contribuinte:</label><br>
+                                <input type='number' class="form-control mb-3 bg-light" name='contribuinte' value={{old('contribuinte')}}><br>
+                                
+                                <label for="contacto" class="form-label">Nº contacto:</label><br>
+                                <input type='number' class="form-control mb-3 bg-light" name='contacto' value={{old('contacto')}}><br>
+                                
+                                <label for="data_nascimento" class="form-label">Data de nascimento:</label><br>
+                                <input type='date' class="form-control mb-3 bg-light" name='data_nascimento' value={{old('data_nascimento')}}><br>
+                            </div>
+                        </div>
+                        <div class="row p-3 mb-3">
+                            <div class="col text-center">
+                        <input type='submit' class="btn btn-secondary" value='Confirmar'><br>
+                    </div>
+                </div>
+                    </form>
+                    
+                    @if ($errors->any())
+                    <div class="">
+                        @foreach ($errors->all() as $error)
+                        {{ $error }}<br>
+                        @endforeach
+                    </div>
+                    @endif
+                </div>
+            </div>
         </div>
-    @endif
+    </div>
 </div>
 
 @endsection

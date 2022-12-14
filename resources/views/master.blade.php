@@ -11,7 +11,7 @@
     </head>
     <body>
         <header>
-            @include('navbar');
+            @yield('header')
         </header>
         <div class="container">
             @yield('content')
