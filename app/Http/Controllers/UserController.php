@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
 
 //controller para os utilizadores
 
@@ -47,7 +48,6 @@ class UserController extends Controller
     }
 
     public function logout(Request $request) {
-
         //faz logout e muda a sessão
         Auth::logout();
         $request->session()->invalidate();
@@ -65,11 +65,27 @@ class UserController extends Controller
             'nome' => ['required', 'string', "regex:/^[\p{L}]{2,}\s[\p{L}]{2,}\s?([\p{L}]{2,})?$/u"],
             'morada' => ['required'],
             'email' => ['required', 'email'],
-            'contribuinte' => ['required', 'number'],
+            'contribuinte' => ['required', 'numeric'],
             'password' => ['required'],
-            'contacto' => ['required', 'number'],
+            'contacto' => ['required', 'numeric'],
             'confirm_password' => ['required'],
             'data_nascimento' => ['required', 'date']
+        ],
+        [
+            'nome.required' => 'Tem de introduzir um nome.',
+            'nome.regex' => 'O formato do nome está errado. (Nome proprio e apelido)',
+            'morada.required' => 'Tem de introduzir uma morada',
+            'email.required' => 'Tem de introduzir um email',
+            'email.email' => 'O email é inválido',
+            'contribuinte.required' => 'Tem de introduzir um contribuinte',
+            'contribuinte.numeric' => 'O contribuinte só pode ter numeros',
+            'password.required' => 'Tem de introduzir uma password',
+            'contacto.required' => 'Tem de introduzir um contacto',
+            'contacto.numeric' => 'O contacto só pode ter numeros',
+            'confirm_password.required' => 'Confirme a password',
+            'data_nascimento.required' => 'Tem de introduzir uma data de nascimento',
+            'data_nascimento.date' => 'Data de nascimento inválida'
+            
         ]);
 
         //cria o novo utilizador
@@ -85,7 +101,9 @@ class UserController extends Controller
         $utilizador->u_estado = 'ativo';
 
         $utilizador->save();
-
+        
+ 
+        event(new Registered($utilizador));
         //meti logo a fazer login mas tenho de tirar pois é preciso o email de verificação
         Auth::login($utilizador);
 
