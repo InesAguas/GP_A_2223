@@ -81,4 +81,17 @@ class ProdutoController extends Controller
 
     }
 
+    public function detalhesProduto(Request $request) {
+        $user = Auth::user();
+
+        $produto = Produto::where('p_id', $request->id)->first();
+
+        //retornar tambem as reviews do produto
+        //retornar tambem as imagens do produto
+
+        return view('produtos/detalhesproduto')
+                ->with('user', $user)
+                ->with('produto', $produto);
+    }
+
 }

@@ -19,6 +19,8 @@ use Illuminate\Http\Request;
 
 Route::get('/{pagina?}', [ProdutoController::class, 'paginaInicial']);
 
+Route::get('/produtos/{id}/detalhes', [ProdutoController::class, 'detalhesProduto']);
+
 //route para aceder à pagina de login
 Route::get('/utilizador/login', function() {
     return view('utilizadores/autenticacao');
