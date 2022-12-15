@@ -56,7 +56,7 @@ class UserController extends Controller
 
         //redirect para a pagina de login
         //MUDAR, deve dar redirect para a pagina inicial /
-        return redirect('/utilizador/login');
+        return redirect('/');
     }
 
     public function registo(Request $request) {
