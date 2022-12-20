@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Support\Facades\DB;
 
 //controller para os utilizadores
 
@@ -31,18 +30,22 @@ class UserController extends Controller
         //tenta fazer login
         if (Auth::attempt($credentials)) {
             $user = User::where('email', $request->email)->first();
-            if($user->u_estado != 'ativo') {
-                return back()->withErrors([
-                    'erro' => 'A sua conta nao esta ativa',
-                ])->withInput();
-            }
 
             if(!$user->hasVerifiedEmail()) {
+                Auth::logout();
                 $user->sendEmailVerificationNotification();
                 return back()->withErrors([
                     'erro' => 'Nao verificou o email',
                 ])->withInput();
             }
+
+            if($user->u_estado != 'ativo') {
+                Auth::logout();
+                return back()->withErrors([
+                    'erro' => 'A sua conta nao esta ativa',
+                ])->withInput();
+            }
+
             Auth::login($user);
             $request->session()->regenerate();
 
@@ -54,6 +57,7 @@ class UserController extends Controller
             return redirect('/');
         } 
         
+        Auth::logout();
         //se nao fizer login faz return dos erros
         return back()->withErrors([
             'erro' => 'Email ou password incorretos',

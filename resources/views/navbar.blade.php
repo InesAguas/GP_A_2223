@@ -27,7 +27,7 @@
         <div class="offcanvas-header">
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             @auth
-            <h5 class="offcanvas-title me-5" id="offcanvasNavbarLabel">Olá {{$user->u_nome}}</h5>
+            <h5 class="offcanvas-title me-5" id="offcanvasNavbarLabel">Olá {{Auth::user()->u_nome}}</h5>
             @endauth
         </div>
         <div class="offcanvas-body ">
