@@ -22,12 +22,12 @@ Route::get('/{pagina?}', [ProdutoController::class, 'paginaInicial']);
 Route::get('/produtos/{id}/detalhes', [ProdutoController::class, 'detalhesProduto']);
 
 //route para aceder à pagina de login
-Route::get('/utilizador/login', function() {
+Route::get('/utilizador/login', function () {
     return view('utilizadores/autenticacao');
 });
 
 //route para aceder à pagina de registar
-Route::get('/utilizador/registo', function() {
+Route::get('/utilizador/registo', function () {
     return view('utilizadores/registo');
 });
 
@@ -46,7 +46,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 //grupo de routes que precisam de verificar se existe alguem autenticado e se é socio
 Route::middleware(['auth', 'socio'])->group(function () {
-    Route::get('/produtos/criarproduto', function() {
+    Route::get('/produtos/criarproduto', function () {
         return view('produtos/criarproduto');
     });
     Route::get('/produtos/verprodutos', [ProdutoController::class, 'verProdutos']);
@@ -55,9 +55,7 @@ Route::middleware(['auth', 'socio'])->group(function () {
 
 //grupo de routes que precisam de verificar se existe alguem autenticado e se é cliente
 Route::middleware(['auth', 'cliente'])->group(function () {
-    Route::get('/utilizador/perfil', function() {
-        return view('utilizadores/perfil');
-    });
+    Route::get('/utilizador/perfil', [UserController::class, 'verPerfil'])->name('perfil');
 });
 
 
