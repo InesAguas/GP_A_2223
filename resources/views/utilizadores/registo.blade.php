@@ -72,6 +72,11 @@
                     </div>
                     @endif
                 </div>
+                <div class="row">
+                    <div class="col ">
+                       Já tem conta? Faça o <a href="{{ url('/utilizador/login') }}">Login</a>
+                    </div>
+                  </div>
             </div>
         </div>
     </div>

@@ -74,6 +74,11 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col text-center">
+            <a href="{{ url('/') }}">Voltar</a>
+        </div>
+      </div>
 </div>
 @endsection
 
