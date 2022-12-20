@@ -62,4 +62,4 @@ Route::middleware(['auth', 'cliente'])->group(function () {
 
 
 //routes por causa da verificação de email, ainda nao estao funcionais
-Route::get('/email/verify/{id}/{hash}', [UserController::class, 'verificaEmail']);
+Route::get('/email/verify/{id}/{hash}', [UserController::class, 'verificaEmail'])->name('verification.verify');

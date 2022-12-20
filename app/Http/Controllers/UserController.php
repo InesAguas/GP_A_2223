@@ -38,14 +38,13 @@ class UserController extends Controller
             }
 
             if(!$user->hasVerifiedEmail()) {
+                $user->sendEmailVerificationNotification();
                 return back()->withErrors([
                     'erro' => 'Nao verificou o email',
                 ])->withInput();
             }
             Auth::login($user);
             $request->session()->regenerate();
-
-            $user->sendEmailVerificationNotification();
 
             if($user->u_tipo == 1) {
                 return redirect('/administracao/utilizadores');
