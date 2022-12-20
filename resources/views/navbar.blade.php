@@ -25,15 +25,18 @@
       
 
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        
         <div class="offcanvas-header">
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            <h5 class="offcanvas-title me-5" id="offcanvasNavbarLabel">Olá Nome do Utilizador</h5>
+            @if($user != null)
+            <h5 class="offcanvas-title me-5" id="offcanvasNavbarLabel">Olá {{$user->u_nome}}</h5>
+            @endif
         </div>
-
+        
         <div class="offcanvas-body ">
           <ul class="navbar-nav justify-content-center align-items-center d-flex ">
             <li class="nav-item p-2">
-              <a class="nav-link active" aria-current="page" href="#">Dados Pessoais</a>
+              <a class="nav-link active" aria-current="page" href="{{ url('/utilizador/perfil')}}">Dados Pessoais</a>
             </li>
 
             <li class="nav-item p-2">
@@ -41,7 +44,7 @@
             </li>
 
             <li class="nav-item p-3">
-                <a href="#"><button type="button" class="btn btn-outline-secondary">Terminar Sessão</button>
+                <a href="{{ url('/utilizador/logout')}}"><button type="button" class="btn btn-outline-secondary">Terminar Sessão</button>
                 </a>
             </li>
           </ul>
