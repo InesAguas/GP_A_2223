@@ -5,7 +5,7 @@
     <div class="container-fluid ">
         <a class="navbar-brand" href="{{ url('/')}}"><img src="/img/logotipo.png" width="70" height="55"></a>
     </div>
-  </nav>
+</nav>
 @endsection
 
 @section('content')
@@ -28,14 +28,26 @@
                             <input type='password' name='password' class="form-control bg-light"><br>
                         </div>
                     </div>
+                    
                     <div class="row p-3 mb-3">
                         <div class="col text-center">
                             <input type='submit'  class="btn btn-secondary" name='login' value='Login'><br>
                         </div>
                     </div>
                 </form>
+                
+            </div>
+            
+        </div>
+        @if ($errors->any())
+        <div class="row p-3 mb-3">
+            <div class="col text-center">
+                <div class="alert alert-warning" role="alert">
+                    {{ $errors->first() }}
+                </div>
             </div>
         </div>
+        @endif
     </div>
     <div class="col-6 p-4">
         <div class="card">
@@ -62,14 +74,6 @@
             </div>
         </div>
     </div>
-    
-    @if ($errors->any())
-    <div class="">
-        @foreach ($errors->all() as $error)
-        {{ $error }}<br>
-        @endforeach
-    </div>
-    @endif
 </div>
 @endsection
 

@@ -15,6 +15,7 @@ class UserController extends Controller
 {
     //funcao para fazer login
     public function login(Request $request) {
+        //falta verificar que o email foi verificado
 
         //verifica que nenhum dos campos esta vazio e que o email é valido
         $credentials = $request->validate(
@@ -27,13 +28,15 @@ class UserController extends Controller
             'email.email' => 'O email é inválido.',
             'password.required' => 'Tem de introduzir uma password.'
         ]);
-
-        //faltam as verificacoes para confirmar que a conta esta ativa
-        //e para verificar que confirmou o email
         
         //tenta fazer login
         if (Auth::attempt($credentials)) {
             $user = User::where('email', $request->email)->first();
+            if($user->u_estado != 'ativo') {
+                return back()->withErrors([
+                    'erro' => 'A sua conta nao esta ativa',
+                ])->withInput();
+            }
             Auth::login($user);
             $request->session()->regenerate();
 
@@ -41,10 +44,12 @@ class UserController extends Controller
                 return redirect('/produtos/verprodutos');
             }
             return redirect('/utilizador/login');
-        }
+        } 
         
-        //se nao fizer login faz return...
-        return back()->withInput();
+        //se nao fizer login faz return dos erros
+        return back()->withErrors([
+            'erro' => 'Email ou password incorretos',
+        ])->withInput();
         
     }
 
@@ -54,23 +59,22 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        //redirect para a pagina de login
-        //MUDAR, deve dar redirect para a pagina inicial /
+        //redirect para a pagina inicial
         return redirect('/');
     }
 
     public function registo(Request $request) {
-        //faltam algumas validacoes
+        //validacoes
         $data = $request->validate(
         [
-            'nome' => ['required', 'string', "regex:/^[\p{L}]{2,}\s[\p{L}]{2,}\s?([\p{L}]{2,})?$/u"],
+            'nome' => ['required', "regex:/^[\p{L}]{2,}\s[\p{L}]{2,}\s?([\p{L}]{2,})?$/u"],
             'morada' => ['required'],
-            'email' => ['required', 'email'],
-            'contribuinte' => ['required', 'numeric'],
-            'password' => ['required'],
-            'contacto' => ['required', 'numeric'],
-            'confirm_password' => ['required'],
-            'data_nascimento' => ['required', 'date']
+            'email' => ['required', 'email', 'unique:utilizadores'],
+            'contribuinte' => ['required', 'numeric', 'digits:9'],
+            'password' => ['required', 'min:8', 'confirmed'],
+            'contacto' => ['required', 'numeric', 'digits:9'],
+            'password_confirmation' => ['required'],
+            'data_nascimento' => ['required', 'date', 'before:-18 years', 'after:-100 years']
         ],
         [
             'nome.required' => 'Tem de introduzir um nome.',
@@ -78,15 +82,21 @@ class UserController extends Controller
             'morada.required' => 'Tem de introduzir uma morada',
             'email.required' => 'Tem de introduzir um email',
             'email.email' => 'O email é inválido',
+            'email.unique' => 'Ja existe conta com esse email',
             'contribuinte.required' => 'Tem de introduzir um contribuinte',
             'contribuinte.numeric' => 'O contribuinte só pode ter numeros',
+            'contribuinte.digits' => 'O contribuinte tem de ter 9 numeros',
             'password.required' => 'Tem de introduzir uma password',
+            'password.min' => 'A password tem de ter pelo menos 8 caracteres',
+            'password_confirmation.required' => 'Confirme a password',
+            'password.confirmed' => 'As passwords não coincidem',
             'contacto.required' => 'Tem de introduzir um contacto',
             'contacto.numeric' => 'O contacto só pode ter numeros',
-            'confirm_password.required' => 'Confirme a password',
+            'contribuinte.digits' => 'O contacto tem de ter 9 numeros',
             'data_nascimento.required' => 'Tem de introduzir uma data de nascimento',
-            'data_nascimento.date' => 'Data de nascimento inválida'
-            
+            'data_nascimento.date' => 'Data de nascimento inválida',
+            'data_nascimento.before' => 'Data de nascimento inválida',
+            'data_nascimento.after' => 'Data de nascimento inválida'
         ]);
 
         //cria o novo utilizador
@@ -103,14 +113,11 @@ class UserController extends Controller
 
         $utilizador->save();
         
- 
+        //isto serve para enviar o email
         event(new Registered($utilizador));
-        //meti logo a fazer login mas tenho de tirar pois é preciso o email de verificação
-        Auth::login($utilizador);
-
-        //redirect para / mas devia ser para uma pagina a indicar que tem de verificar o email
-
-        return redirect("/");
+        
+        //faz return para indicar que tem de verificar o email
+        return back()->with('sucesso', 'Registo concluido, verifique o email');
 
     }
 
