@@ -37,13 +37,21 @@ class UserController extends Controller
                     'erro' => 'A sua conta nao esta ativa',
                 ])->withInput();
             }
+
+            if(!$user->hasVerifiedEmail()) {
+                return back()->withErrors([
+                    'erro' => 'Nao verificou o email',
+                ])->withInput();
+            }
             Auth::login($user);
             $request->session()->regenerate();
 
-            if($user->u_tipo == 1) {
+            $user->sendEmailVerificationNotification();
+
+            if($user->u_tipo == 1 || $user->u_tipo == 2) {
                 return redirect('/produtos/verprodutos');
             }
-            return redirect('/utilizador/login');
+            return redirect('/');
         } 
         
         //se nao fizer login faz return dos erros
@@ -51,6 +59,16 @@ class UserController extends Controller
             'erro' => 'Email ou password incorretos',
         ])->withInput();
         
+    }
+
+    public function verificaEmail(Request $request) {
+        $user = User::where('u_id', $request->id)->first();
+        if(hash_equals(sha1($user->getEmailForVerification()), $request->hash)){
+            $user->markEmailAsVerified();
+            return redirect('/utilizador/login');
+        }
+        
+        abort(404);
     }
 
     public function logout(Request $request) {
@@ -115,7 +133,7 @@ class UserController extends Controller
         
         //isto serve para enviar o email
         event(new Registered($utilizador));
-        
+
         //faz return para indicar que tem de verificar o email
         return back()->with('sucesso', 'Registo concluido, verifique o email');
 
