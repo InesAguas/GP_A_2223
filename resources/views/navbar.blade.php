@@ -25,28 +25,54 @@
       
 
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        
         <div class="offcanvas-header">
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            @if($user != null)
+            @auth
             <h5 class="offcanvas-title me-5" id="offcanvasNavbarLabel">Olá {{$user->u_nome}}</h5>
-            @endif
+            @endauth
         </div>
-        
         <div class="offcanvas-body ">
           <ul class="navbar-nav justify-content-center align-items-center d-flex ">
+            @guest
+            <li class="nav-item p-3">
+              <a href="{{ url('/utilizador/login')}}"><button type="button" class="btn btn-outline-secondary">Login</button>
+              </a>
+              <a href="{{ url('/utilizador/registo')}}"><button type="button" class="btn btn-outline-secondary">Criar conta</button>
+              </a>
+          </li>
+            <li class="nav-item p-2">
+              <a class="nav-link active" aria-current="page" href="{{ url('/utilizador/login')}}">Dados Pessoais</a>
+            </li>
+            <li class="nav-item p-2">
+              <a class="nav-link active" href="{{ url('/utilizador/login')}}">As minhas encomendas</a>
+            </li>
+            @endguest
+            @auth
+            @if (Auth::user()->u_tipo == 1)
+            <li class="nav-item p-2">
+              <a class="nav-link active" aria-current="page" href="{{ url('/administracao/utilizadores')}}">Utilizadores</a>
+            </li>
+            <li class="nav-item p-2">
+              <a class="nav-link active" href="{{ url('/produtos/verprodutos')}}">Produtos</a>
+            </li>
+            @else
             <li class="nav-item p-2">
               <a class="nav-link active" aria-current="page" href="{{ url('/utilizador/perfil')}}">Dados Pessoais</a>
             </li>
-
             <li class="nav-item p-2">
-              <a class="nav-link active" href="#">As minhas encomendas</a>
+              <a class="nav-link active" href="{{ url('/utilizador/encomendas')}}">As minhas encomendas</a>
             </li>
-
+            @endif
+            @if (Auth::user()->u_tipo == 2)
+            <li class="nav-item p-2">
+              <a class="nav-link active" aria-current="page" href="{{ url('/produtos/verprodutos')}}">Os meus produtos</a>
+            </li>
+            @endif
             <li class="nav-item p-3">
                 <a href="{{ url('/utilizador/logout')}}"><button type="button" class="btn btn-outline-secondary">Terminar Sessão</button>
                 </a>
             </li>
+            @endauth
           </ul>
         </div>
       </div>
