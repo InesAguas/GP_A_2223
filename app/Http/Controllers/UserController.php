@@ -15,7 +15,6 @@ class UserController extends Controller
 {
     //funcao para fazer login
     public function login(Request $request) {
-        //falta verificar que o email foi verificado
 
         //verifica que nenhum dos campos esta vazio e que o email é valido
         $credentials = $request->validate(
@@ -48,7 +47,9 @@ class UserController extends Controller
 
             $user->sendEmailVerificationNotification();
 
-            if($user->u_tipo == 1 || $user->u_tipo == 2) {
+            if($user->u_tipo == 1) {
+                return redirect('/administracao/utilizadores');
+            }else if($user->u_tipo == 2) {
                 return redirect('/produtos/verprodutos');
             }
             return redirect('/');
