@@ -3,7 +3,7 @@
 @section('header')
 <nav class="navbar ">
     <div class="container-fluid ">
-      <a class="navbar-brand" href="#">Logo</a>
+        <a class="navbar-brand" href="{{ url('/')}}"><img src="/img/logotipo.png" width="70" height="55"></a>
     </div>
   </nav>
 @endsection
