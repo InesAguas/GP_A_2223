@@ -35,3 +35,9 @@ body{
 .esgotado{
     color: red;
 }
+
+#foto {
+    max-height: 200px;
+    height: auto;
+    width: auto;
+}

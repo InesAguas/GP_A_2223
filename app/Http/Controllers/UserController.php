@@ -153,6 +153,26 @@ class UserController extends Controller
         return view('utilizadores/perfil')->with('user', $user);
     }
 
+    public function editarPerfil(Request $request)
+    {
+
+        $user = Auth::user();
+        if (isset($_POST['guardarDados'])) {
+            $fileName = time() . '.' . $request->imgPerfil->extension();
+            $request->imgPerfil->move(public_path('img'), $fileName);
+            $user->u_imagem = $fileName;
+            $user->u_nome = $_POST['nome'];
+            $user->email = $_POST['email'];
+            $user->u_morada = $_POST['morada'];
+            $user->u_contribuinte = $_POST['nif'];
+            $user->u_telefone = $_POST['telemovel'];
+            $user->u_data_nascimento = $_POST['data_nascimento'];
+
+            $user->save();
+        }
+        return redirect('/utilizador/perfil');
+    }
+
     public function verUtilizadores(Request $request)
     {
         $users = User::all();

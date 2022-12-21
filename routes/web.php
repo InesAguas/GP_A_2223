@@ -56,6 +56,7 @@ Route::middleware(['auth', 'socio'])->group(function () {
 //grupo de routes que precisam de verificar se existe alguem autenticado e se é cliente
 Route::middleware(['auth', 'cliente'])->group(function () {
     Route::get('/utilizador/perfil', [UserController::class, 'verPerfil'])->name('perfil');
+    Route::post('/utilizador/editarPerfil', [UserController::class, 'editarPerfil']);
 });
 
 
