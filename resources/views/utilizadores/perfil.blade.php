@@ -5,20 +5,17 @@
 @endsection
 
 @section('content')
-<?php
 
 
-
-if (isset($_GET['apagarConta'])) {
-    $user->delete();
-    header('Location: /');
-}
-
-
-?>
 
 <div class="bg-light mt-4 ">
-    <div class="container ">
+    <div class="container pt-4">
+        @if (session()->has('msg'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{session()->get('msg')}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
         <form action="/utilizador/editarPerfil" method="post" id="dadosPerfil" enctype="multipart/form-data">
             @csrf
             <div class="row p-3">
@@ -63,8 +60,9 @@ if (isset($_GET['apagarConta'])) {
 
 
             <div class="offset-4 col-4 mb-2">
-                <form method="get">
-                    <button type="button" class="btn btn-danger w-100" name="apagarConta">Apagar Conta</button>
+                <form method="post" action="/utilizador/apagarPerfil">
+                    @csrf
+                    <button type="submit" class="btn btn-danger w-100" name="apagarConta">Apagar Conta</button>
                 </form>
             </div>
 

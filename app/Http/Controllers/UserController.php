@@ -158,19 +158,32 @@ class UserController extends Controller
 
         $user = Auth::user();
         if (isset($_POST['guardarDados'])) {
-            $fileName = time() . '.' . $request->imgPerfil->extension();
-            $request->imgPerfil->move(public_path('img'), $fileName);
-            $user->u_imagem = $fileName;
+            if (isset($request['imgPerfil'])) {
+                $fileName = time() . '.' . $request->imgPerfil->extension();
+                $request->imgPerfil->move(public_path('img'), $fileName);
+                $user->u_imagem = $fileName;
+            }
+
             $user->u_nome = $_POST['nome'];
             $user->email = $_POST['email'];
             $user->u_morada = $_POST['morada'];
             $user->u_contribuinte = $_POST['nif'];
             $user->u_telefone = $_POST['telemovel'];
             $user->u_data_nascimento = $_POST['data_nascimento'];
+            if (isset($_POST['password']) && trim($_POST['password']) != "") {
+                $user->password = Hash::make($_POST['password']);
+            }
 
             $user->save();
         }
-        return redirect('/utilizador/perfil');
+        return redirect('/utilizador/perfil')->with("msg", "Dados alterados com sucesso");
+    }
+
+    public function apagarPerfil(Request $request)
+    {
+        $user = Auth::user();
+        $user->delete();
+        return redirect('/');
     }
 
     public function verUtilizadores(Request $request)

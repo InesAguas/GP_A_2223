@@ -57,6 +57,7 @@ Route::middleware(['auth', 'socio'])->group(function () {
 Route::middleware(['auth', 'cliente'])->group(function () {
     Route::get('/utilizador/perfil', [UserController::class, 'verPerfil'])->name('perfil');
     Route::post('/utilizador/editarPerfil', [UserController::class, 'editarPerfil']);
+    Route::post('/utilizador/apagarPerfil', [UserController::class, 'apagarPerfil']);
 });
 
 
