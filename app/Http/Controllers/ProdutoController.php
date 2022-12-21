@@ -89,7 +89,6 @@ class ProdutoController extends Controller
         //retornar tambem as imagens do produto
 
         return view('produtos/detalhesproduto')
-                ->with('user', $user)
                 ->with('produto', $produto);
     }
 
