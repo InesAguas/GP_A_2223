@@ -119,13 +119,18 @@ class UserController extends Controller
 
     public function verUtilizadores(Request $request) {
         $search = $request->input('search');
-        if(empty($search)){
+        $tipo = $request->input('tipo');
+        $estado = $request->input('estado');
+
+        if(empty($search) && $tipo == '0' && $estado == '0') {
             $users = User::sortable()->paginate(5);
-        }else{
+        }else{           
             $users = User::query()
-                ->where('u_nome', 'LIKE', "%{$search}%")
-                ->orWhere('email', 'LIKE', "%{$search}%")
-                ->sortable()->paginate(5); 
+            ->where('u_nome', 'LIKE', "%{$search}%")
+            #->orWhere('email', 'LIKE', "%{$search}%")
+            #->where('u_tipo', 'LIKE', "%{$tipo}%")
+            ->where('u_estado', 'LIKE', "{$estado}")
+            ->sortable()->paginate(5); 
         }
         return view('utilizadores/utilizadores')->with('users', $users);
     

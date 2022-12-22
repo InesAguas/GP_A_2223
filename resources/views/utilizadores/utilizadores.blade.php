@@ -3,28 +3,40 @@
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 @section('content')
     <div style="background-color: white;">
-        <p>Teste</p>
-        <form action="{{ route('search') }}" method="GET">
-            <input type="text" name="search"/>
-            <button type="submit">Search</button>
-        </form>
-
          <div class = "searchbar">
             <div id='container'>
-                <div class = "dropdown" id = "tipoDropdown">
-                    <div class="labels">
-                        <label for = "tipoUser">Tipo:</label>
-                    </div>
-                    <div class = "dropdown">
-                        <select id = "tipo" name = "tipo">
-                            <option value="0">Todos</option>
-                            <option value="1">Administrator</option>
-                            <option value="2">Sócio</option>
-                            <option value="3">Cliente</option>
-                        </select>
-                    </div>
+                <div class="labels">
+                    <label for = "nomeUser">Nome:</label>
                 </div>
-            </form>
+                <form action="{{ route('search') }}" method="GET">
+                    <input type="text" name="search"/>
+                    <button type="submit">Search</button>
+                    <div class = "dropdown" id = "tipoDropdown">
+                        <div class="labels">
+                            <label for = "tipoUser">Tipo:</label>
+                        </div>
+                        
+                        <div class = "dropdown">
+                            <select id = "tipo" name = "tipo">
+                                <option value="0" selected>Todos</option>
+                                <option value="1">Administrator</option>
+                                <option value="2">Sócio</option>
+                                <option value="3">Cliente</option>
+                            </select>
+                        </div>
+                        <div class="labels">
+                            <label for = "estadoUser">Estado:</label>
+                        </div>
+                        <div class = "dropdown">
+                            <select id = "estado" name = "estado">
+                                <option value="0" selected>Todos</option>
+                                <option value="ativo">Ativo</option>
+                                <option value="inativo">Inativo</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
 
 
@@ -97,6 +109,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
                 @endforeach
                 </tbody>
             </table>
-            {{ $users->appends(Request::only(['filter','search']))->links('pagination::bootstrap-5')}}
+            {{ $users->appends(Request::only(['estado','filter','search']))->links('pagination::bootstrap-5')}}
     <div>
 @endsection
