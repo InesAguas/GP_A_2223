@@ -8,15 +8,26 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
             <input type="text" name="search"/>
             <button type="submit">Search</button>
         </form>
-        <div class="form-group">
-            <label for="role">Tipo</label>
-            <select name="roles[]" class="form-control">
-                <option value="0">Todos</option>
-                <option value="1">Administrator</option>
-                <option value="2">Sócio</option>
-                <option value="3">Cliente</option>
-            </select>
-         </div>
+
+         <div class = "searchbar">
+            <div id='container'>
+                <div class = "dropdown" id = "tipoDropdown">
+                    <div class="labels">
+                        <label for = "tipoUser">Tipo:</label>
+                    </div>
+                    <div class = "dropdown">
+                        <select id = "tipo" name = "tipo">
+                            <option value="0">Todos</option>
+                            <option value="1">Administrator</option>
+                            <option value="2">Sócio</option>
+                            <option value="3">Cliente</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
         <table class="table table-bordered table-hover">
             <thead style="font-size: 18px; background-color:rgb(60, 60, 60)">
                 <tr>
