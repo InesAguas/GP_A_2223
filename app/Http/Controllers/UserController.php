@@ -122,20 +122,42 @@ class UserController extends Controller
         $tipo = $request->input('tipo');
         $estado = $request->input('estado');
 
+        $users = User::sortable()->paginate(5);
         if(empty($search) && $tipo == '0' && $estado == '0') {
             $users = User::sortable()->paginate(5);
-        }else{           
-            $users = User::query()
-            ->where('u_nome', 'LIKE', "%{$search}%")
-            #->orWhere('email', 'LIKE', "%{$search}%")
-            #->where('u_tipo', 'LIKE', "%{$tipo}%")
-            ->where('u_estado', 'LIKE', "{$estado}")
-            ->sortable()->paginate(5); 
+        }else{   
+            if($tipo == '0' && $estado == '0') {
+                $users = User::query()
+                ->where('u_nome', 'LIKE', "%{$search}%")
+                ->sortable()->paginate(5); 
+            }elseif($tipo != '0' && $estado == '0') {
+                $users = User::query()
+                ->where('u_nome', 'LIKE', "%{$search}%")
+                ->where('u_tipo', 'LIKE', "%{$tipo}%")
+                ->sortable()->paginate(5); 
+            }elseif($tipo == '0' && $estado != '0') {
+                $users = User::query()
+                ->where('u_nome', 'LIKE', "%{$search}%")
+                ->where('u_estado', 'LIKE', "{$estado}")
+                ->sortable()->paginate(5); 
+            }else{
+                $users = User::query()
+                ->where('u_nome', 'LIKE', "%{$search}%")
+                ->where('u_tipo', 'LIKE', "%{$tipo}%")
+                ->where('u_estado', 'LIKE', "{$estado}")
+                ->sortable()->paginate(5); 
+            }        
+           
         }
         return view('utilizadores/utilizadores')->with('users', $users);
-    
+
     }
 
+    public function utilizadores(Request $request) {
+        $users = User::sortable()->paginate(5);
+        
+        return view('utilizadores/utilizadores')->with('users', $users);
+    }
 
     /**
      * Get the error messages for the defined validation rules.

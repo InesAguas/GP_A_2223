@@ -1,45 +1,90 @@
 @extends('master')
 <link rel="stylesheet" 
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+<style>
+.select-wrap {
+  border: 1px solid #777;
+  border-radius: 4px;
+  padding: 0 5px;
+  width:200px;
+  background-color: rgb(79, 79, 79);
+  position:relative;
+}
+.select-wrap label{
+  font-size:9px;
+  text-transform: uppercase;
+  color: white;
+  padding: 0 8px;  
+  position: absolute;
+  top:4px;
+}
+
+select{
+  background-color:  rgb(79, 79, 79);
+  border:0px;
+  height:45px;
+  font-size: 16px;
+  color: white;
+}
+div.inline { 
+    float:left; 
+    padding-inline-end: 35px;
+}
+.container {
+    background-color: rgb(222, 222, 222);
+}
+
+table thead tr { background-color:  rgb(79, 79, 79); color: lightgreen; }
+table tbody tr{ background-color: rgb(222, 222, 222); }
+
+input {
+    background-color: rgb(79, 79, 79);
+    color: white;
+}
+
+input::placeholder {
+    color: white;
+}
+
+</style>
 @section('content')
-    <div style="background-color: white;">
-         <div class = "searchbar">
+    <p>Testee</p>
+    <div>
+        <div class = "searchbar">
             <div id='container'>
-                <div class="labels">
-                    <label for = "nomeUser">Nome:</label>
-                </div>
-                <form action="{{ route('search') }}" method="GET">
-                    <input type="text" name="search"/>
-                    <button type="submit">Search</button>
-                    <div class = "dropdown" id = "tipoDropdown">
-                        <div class="labels">
-                            <label for = "tipoUser">Tipo:</label>
+                <div class="inline">
+                    <form action="{{ route('search') }}" method="GET">
+                        <input type="text" name="search" placeholder="Procurar utilizador..."/>
+                        <button type="submit">Search</button>
                         </div>
-                        
-                        <div class = "dropdown">
-                            <select id = "tipo" name = "tipo">
-                                <option value="0" selected>Todos</option>
-                                <option value="1">Administrator</option>
-                                <option value="2">Sócio</option>
-                                <option value="3">Cliente</option>
-                            </select>
+                        <div class="inline">
+                            <div class = "select-wrap">
+                                <label for = "tipoUser">Tipo de Utilizador:</label>
+                                <select id = "tipo" name = "tipo" style="width: 100%;">
+                                    <option value="0" selected>Todos</option>
+                                    <option value="1">Administrator</option>
+                                    <option value="2">Sócio</option>
+                                    <option value="3">Cliente</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="labels">
-                            <label for = "estadoUser">Estado:</label>
+                        <div class="inline">
+                            <div class = "select-wrap">
+                                <label for = "estadoUser">Estado:</label>
+                                <select id = "estado" name = "estado" style="width: 100%;">
+                                    <option value="0" selected>Todos</option>
+                                    <option value="ativo">Ativo</option>
+                                    <option value="inativo">Inativo</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class = "dropdown">
-                            <select id = "estado" name = "estado">
-                                <option value="0" selected>Todos</option>
-                                <option value="ativo">Ativo</option>
-                                <option value="inativo">Inativo</option>
-                            </select>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div> 
+                <button style="background-color:rgb(0, 90, 18); color: white;">+ Adicionar</button>
             </div>
         </div>
-
-
+        
+     
         <table class="table table-bordered table-hover">
             <thead style="font-size: 18px; background-color:rgb(60, 60, 60)">
                 <tr>
