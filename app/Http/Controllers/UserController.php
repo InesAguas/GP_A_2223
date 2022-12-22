@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Support\Facades\DB;
 
 //controller para os utilizadores
 
@@ -119,9 +118,19 @@ class UserController extends Controller
     }
 
     public function verUtilizadores(Request $request) {
-        $users = User::all();
+        $search = $request->input('search');
+        if(empty($search)){
+            $users = User::sortable()->paginate(5);
+        }else{
+            $users = User::query()
+                ->where('u_nome', 'LIKE', "%{$search}%")
+                ->orWhere('email', 'LIKE', "%{$search}%")
+                ->sortable()->paginate(5); 
+        }
         return view('utilizadores/utilizadores')->with('users', $users);
+    
     }
+
 
     /**
      * Get the error messages for the defined validation rules.
