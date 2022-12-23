@@ -18,7 +18,11 @@ class ProdutoController extends Controller
         if($user->u_tipo == 1) {
             $produtos = Produto::all();
         } else {
-            $produtos = Produto::where('u_id', $user->u_id);
+            $produtos = Produto::where('u_id', $user->u_id)->get();
+        }
+
+        foreach($produtos as $produto) {
+            $produto->p_imagem = Imagem::where('p_id', '=', $produto->p_id)->first()->i_nome;
         }
 
         return view('produtos/produtossocios')
