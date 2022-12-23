@@ -1,34 +1,49 @@
 @extends('master')
 
+@section('header')
+@include('navbar')
+@endsection
+
 @section('content')
-
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
-<div class="container2">
+<div class="row mt-5 mb-5 ">
+<div class="col">
+    <div class="card">
+        <div class="card-body">
     <form method="POST" action="/produtos/criarproduto" enctype="multipart/form-data">
         @csrf
-        <label for="nome">Indique o nome do produto:</label><br>
-        <input type='text' name='nome'><br>
-        <label for="categoria">Indique a categoria do produto:</label><br>
-        <input type='text' name='categoria'><br>
-        <label for="preco">Indique o preço do produto:</label><br>
-        <input type='number' name='preco'><br>
-        <label for="stock">Indique a quantidade de stock:</label><br>
-        <input type='number' name='stock'><br>
-        <label for="descricao">Indique a descrição do produto:</label><br>
-        <input type='text' name='descricao'><br>
+        <div class="row p-3">
+            <div class="col">
+        <label for="nome">Indique o nome do produto:</label>
+        <input type='text' name='nome' class="form-control mb-3 bg-light" >
+        <label for="categoria">Indique a categoria do produto:</label>
+        <input type='text' name='categoria' class="form-control mb-3 bg-light" >
+        <label for="preco">Indique o preço do produto:</label>
+        <input type='number' name='preco' step=".01" class="form-control mb-3 bg-light" >
+        <label for="stock">Indique a quantidade de stock:</label>
+        <input type='number' name='stock' class="form-control mb-3 bg-light" >
+        <label for="descricao">Indique a descrição do produto:</label>
+        <input type='text' name='descricao' class="form-control mb-3 bg-light" >
         <label for="imagens">Indique as imagens do produto: </label>
-        <input type="file"  accept="image/jpeg, image/png" name="imagens[]" multiple><br>
-        //falta usar JS para limitar o numero de imagens para 7
-        <input type='submit' value='Confirmar'><br>
+        <input type="file"  accept="image/jpeg, image/png" name="imagens[]" multiple>
+            </div>
+        </div>
+        <div class="row p-3 mb-3">
+            <div class="col text-center">
+        <input type='submit' value='Confirmar'>
+            </div>
+        </div>
     </form>
+</div>
+</div>
+</div>
+@if ($errors->any())
+        <div class="row p-3 mb-3">
+            <div class="col text-center">
+                <div class="alert alert-warning" role="alert">
+                    {{ $errors->first() }}
+                </div>
+            </div>
+        </div>
+        @endif
 </div>
 @endsection

@@ -10,7 +10,6 @@
 
 @section('content')
 
-<main class="container">
     <div class="row mt-5 mb-5 ">
         <div class="col">
             <div class="card">
