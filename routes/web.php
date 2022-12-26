@@ -41,8 +41,11 @@ Route::post('/utilizador/registar', [UserController::class, 'registo']);
 
 //grupo de routes que precisam de verificar se existe alguem autenticado e se é administrador
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/administracao/utilizadores', [UserController::class, 'verUtilizadores']);
+    Route::get('/administracao/utilizadores', [UserController::class, 'utilizadores']);
+    Route::get('/administracao/utilizadores/search/', [UserController::class, 'verUtilizadores'])->name('search', 'filter', 'estado');
+    
 });
+
 
 //grupo de routes que precisam de verificar se existe alguem autenticado e se é socio
 Route::middleware(['auth', 'socio'])->group(function () {

@@ -9,10 +9,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Kyslik\ColumnSortable\Sortable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Sortable;
 
     protected $table = 'utilizadores';
     protected $primaryKey = 'u_id';
@@ -55,4 +56,6 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
 
     ];
+
+    protected $sortable = ['u_id', 'u_nome', 'email', 'u_tipo'];
 }
