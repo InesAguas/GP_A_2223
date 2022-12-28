@@ -106,16 +106,29 @@ class ProdutoController extends Controller
         if($request->pagina == null) {
             $request->pagina = 1;
         }
+
+        if($request->produtospagina == null) {
+            $request->produtospagina = 9;
+        }
         
         $pagina = $request->pagina;
+        $pdpagina = $request->produtospagina;   
 
-        $produtos = Produto::all();
+        $totalpaginas = Produto::all();
+        $totalpaginas = ceil(count($totalpaginas) / $pdpagina);
+
+        $min = ($pagina-1)*$pdpagina;
+
+        $produtos = Produto::all()->skip($min)->take($pdpagina);
 
         foreach($produtos as $produto) {
             $produto->p_imagem = Imagem::where('p_id', '=', $produto->p_id)->first()->i_nome;
         }
 
-        return view('utilizadores/paginainicioclientes')->with('produtos', $produtos);
+        return view('utilizadores/paginainicioclientes')
+            ->with('produtos', $produtos)
+            ->with('totalpaginas', $totalpaginas)
+            ->with('paginaatual', $pagina);
 
     }
 

@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware(['authcliente'])->group(function () {
-    Route::get('/{pagina?}', [ProdutoController::class, 'paginaInicial']);
+    Route::get('/{pagina?}/{produtospagina?}', [ProdutoController::class, 'paginaInicial']);
     Route::get('/produtos/{id}/detalhes', [ProdutoController::class, 'detalhesProduto']);
 });
 
