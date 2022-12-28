@@ -18,7 +18,11 @@ class ProdutoController extends Controller
         if($user->u_tipo == 1) {
             $produtos = Produto::all();
         } else {
-            $produtos = Produto::where('u_id', $user->u_id);
+            $produtos = Produto::where('u_id', $user->u_id)->get();
+        }
+
+        foreach($produtos as $produto) {
+            $produto->p_imagem = Imagem::where('p_id', '=', $produto->p_id)->first()->i_nome;
         }
 
         return view('produtos/produtossocios')
@@ -34,7 +38,33 @@ class ProdutoController extends Controller
             'stock' => 'required',
             'descricao' => 'required',
             'imagens' => 'required'
+        ],
+        [
+            'nome.required' => 'Tem de introduzir um nome.',
+            'categoria.required' => 'Tem de introduzir uma categoria',
+            'preco.required' => 'Tem de introduzir um preço',
+            'stock.required' => 'Tem de introduzir o stock',
+            'descricao.required' => 'Tem de introduzir uma descrição',
+            'imagens.required' => 'Tem de selecionar pelo menos uma imagem'
         ]);
+
+        if($request->preco < 0.5 || $request->preco > 1000) {
+            return back()
+            ->withInput()
+            ->withErrors(['preco' => 'O preço tem de ser entre 0.5 e 1000']);
+        }
+
+        if($request->stock <= 0 || $request->stock > 9999) {
+            return back()
+            ->withInput()
+            ->withErrors(['stock' => 'O stock tem de ser entre 1 e 9999']);
+        }
+
+        if(count($request->imagens) > 7) {
+            return back()
+            ->withInput()
+            ->withErrors(['imagens' => 'Nao pode inserir mais que 7 imagens']);
+        }
 
         $produto = new Produto();
         
@@ -58,8 +88,17 @@ class ProdutoController extends Controller
             $imagem->save();
         }
 
-        return redirect('/produtos/verprodutos');
-        //ja esta a guardar mas falta as imagens e o return correto.
+        return redirect('/produtos/verprodutos')->with('sucesso', 'Produto criado com sucesso.');
+    }
+
+    public function editarProdutoView(Request $request) {
+        $produto = Produto::where('p_id', '=', $request->id)->where('u_id', '=', Auth::user()->u_id)->first();
+        if($produto == null) {
+            return abort(404);
+        }
+
+        return view('produtos/editarproduto')->with('produto', $produto);
+        
     }
 
     public function paginaInicial(Request $request) {
