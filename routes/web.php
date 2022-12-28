@@ -17,9 +17,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/{pagina?}', [ProdutoController::class, 'paginaInicial']);
-
-Route::get('/produtos/{id}/detalhes', [ProdutoController::class, 'detalhesProduto']);
+Route::middleware(['authcliente'])->group(function () {
+    Route::get('/{pagina?}', [ProdutoController::class, 'paginaInicial']);
+    Route::get('/produtos/{id}/detalhes', [ProdutoController::class, 'detalhesProduto']);
+});
 
 //route para aceder à pagina de login
 Route::get('/utilizador/login', function () {
@@ -51,6 +52,7 @@ Route::middleware(['auth', 'socio'])->group(function () {
     });
     Route::get('/produtos/verprodutos', [ProdutoController::class, 'verProdutos']);
     Route::post('/produtos/criarproduto', [ProdutoController::class, 'criarProduto']);
+    Route::get('/produtos/{id}/editarproduto', [ProdutoController::class, 'editarProduto']);
 });
 
 //grupo de routes que precisam de verificar se existe alguem autenticado e se é cliente
