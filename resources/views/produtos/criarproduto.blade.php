@@ -70,7 +70,7 @@
     function showImages(input) {
         document.getElementById("imagearea").innerHTML = "";
         for (let i = 0; i < input.files.length; i++) {
-            document.getElementById("imagearea").innerHTML += "<div class='col-2'><img src='" + URL.createObjectURL(event.target.files[0]) + "' height='125' width='150'></div>"
+            document.getElementById("imagearea").innerHTML += "<div class='col-2'><img src='" + URL.createObjectURL(event.target.files[i]) + "' height='125' width='150'></div>"
         }
     }
     </script>
