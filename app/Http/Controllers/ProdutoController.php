@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Produto;
 use App\Models\Imagem;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -111,24 +112,39 @@ class ProdutoController extends Controller
             $request->produtospagina = 9;
         }
         
-        $pagina = $request->pagina;
-        $pdpagina = $request->produtospagina;   
+
+        $pagina = $request->pagina;   
+        $produtospagina = $request->produtospagina;   
 
         $totalpaginas = Produto::all();
-        $totalpaginas = ceil(count($totalpaginas) / $pdpagina);
+        $totalpaginas = ceil(count($totalpaginas) / $produtospagina);
 
-        $min = ($pagina-1)*$pdpagina;
+        $min = ($pagina-1)*$produtospagina;
 
-        $produtos = Produto::all()->skip($min)->take($pdpagina);
-
+        if($request->ordem == 1) {
+            $ordem = $request->ordem;
+            $produtos = Produto::all()->sortByDesc('p_preco')->skip($min)->take($produtospagina);
+        } else if($request->ordem == 2) {
+            $ordem = $request->ordem;
+            $produtos = Produto::all()->sortBy('p_preco')->skip($min)->take($produtospagina);
+        } else {
+            $ordem = 0;
+            $produtos = Produto::all()->skip($min)->take($produtospagina);
+        }
         foreach($produtos as $produto) {
             $produto->p_imagem = Imagem::where('p_id', '=', $produto->p_id)->first()->i_nome;
+            $produto->p_review = round(Review::where('p_id', '=', $produto->p_id)->avg('r_avaliacao'), 2);
+            if($produto->p_review == null) {
+                $produto->p_review = 0;
+            }
         }
 
         return view('utilizadores/paginainicioclientes')
             ->with('produtos', $produtos)
             ->with('totalpaginas', $totalpaginas)
-            ->with('paginaatual', $pagina);
+            ->with('pagina', $pagina)
+            ->with('produtospagina', $produtospagina)
+            ->with('ordem', $ordem);
 
     }
 
