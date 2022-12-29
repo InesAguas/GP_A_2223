@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('header')
-@include('navbar')
+@include('navbarprocura')
 @endsection
 
 @section('content')

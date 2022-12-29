@@ -104,6 +104,10 @@ class ProdutoController extends Controller
 
     public function paginaInicial(Request $request) {
 
+        if($request->search == null) {
+            $request->search == "";
+        }
+
         if($request->pagina == null) {
             $request->pagina = 1;
         }
@@ -112,9 +116,9 @@ class ProdutoController extends Controller
             $request->produtospagina = 9;
         }
         
-
         $pagina = $request->pagina;   
         $produtospagina = $request->produtospagina;   
+        $search = $request->search;
 
         $totalpaginas = Produto::all();
         $totalpaginas = ceil(count($totalpaginas) / $produtospagina);
@@ -123,13 +127,13 @@ class ProdutoController extends Controller
 
         if($request->ordem == 1) {
             $ordem = $request->ordem;
-            $produtos = Produto::all()->sortByDesc('p_preco')->skip($min)->take($produtospagina);
+            $produtos = Produto::where('p_nome', 'like', '%' . $search . '%')->sortByDesc('p_preco')->skip($min)->take($produtospagina)->get();
         } else if($request->ordem == 2) {
             $ordem = $request->ordem;
-            $produtos = Produto::all()->sortBy('p_preco')->skip($min)->take($produtospagina);
+            $produtos = Produto::where('p_nome', 'like', '%' . $search . '%')->sortBy('p_preco')->skip($min)->take($produtospagina)->get();
         } else {
             $ordem = 0;
-            $produtos = Produto::all()->skip($min)->take($produtospagina);
+            $produtos = Produto::where('p_nome', 'like', '%' . $search . '%')->skip($min)->take($produtospagina)->get();
         }
         foreach($produtos as $produto) {
             $produto->p_imagem = Imagem::where('p_id', '=', $produto->p_id)->first()->i_nome;
@@ -144,7 +148,8 @@ class ProdutoController extends Controller
             ->with('totalpaginas', $totalpaginas)
             ->with('pagina', $pagina)
             ->with('produtospagina', $produtospagina)
-            ->with('ordem', $ordem);
+            ->with('ordem', $ordem)
+            ->with('search', $search);
 
     }
 
