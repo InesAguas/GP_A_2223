@@ -93,7 +93,12 @@ class ProdutoController extends Controller
     }
 
     public function editarProdutoView(Request $request) {
-        $produto = Produto::where('p_id', '=', $request->id)->where('u_id', '=', Auth::user()->u_id)->first();
+        if(Auth::user()->u_id == 1) {
+            $produto = Produto::where('p_id', '=', $request->id)->first();
+        } else {
+            $produto = Produto::where('p_id', '=', $request->id)->where('u_id', '=', Auth::user()->u_id)->first();
+        }
+        
         if($produto == null) {
             return abort(404);
         }
