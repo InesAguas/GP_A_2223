@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Produto;
 use App\Models\Imagem;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -92,7 +93,12 @@ class ProdutoController extends Controller
     }
 
     public function editarProdutoView(Request $request) {
-        $produto = Produto::where('p_id', '=', $request->id)->where('u_id', '=', Auth::user()->u_id)->first();
+        if(Auth::user()->u_id == 1) {
+            $produto = Produto::where('p_id', '=', $request->id)->first();
+        } else {
+            $produto = Produto::where('p_id', '=', $request->id)->where('u_id', '=', Auth::user()->u_id)->first();
+        }
+        
         if($produto == null) {
             return abort(404);
         }
@@ -103,19 +109,52 @@ class ProdutoController extends Controller
 
     public function paginaInicial(Request $request) {
 
+        if($request->search == null) {
+            $request->search == "";
+        }
+
         if($request->pagina == null) {
             $request->pagina = 1;
         }
+
+        if($request->produtospagina == null) {
+            $request->produtospagina = 9;
+        }
         
-        $pagina = $request->pagina;
+        $pagina = $request->pagina;   
+        $produtospagina = $request->produtospagina;   
+        $search = $request->search;
 
-        $produtos = Produto::all();
+        $totalpaginas = Produto::all();
+        $totalpaginas = ceil(count($totalpaginas) / $produtospagina);
 
+        $min = ($pagina-1)*$produtospagina;
+
+        if($request->ordem == 1) {
+            $ordem = $request->ordem;
+            $produtos = Produto::where('p_nome', 'like', '%' . $search . '%')->sortByDesc('p_preco')->skip($min)->take($produtospagina)->get();
+        } else if($request->ordem == 2) {
+            $ordem = $request->ordem;
+            $produtos = Produto::where('p_nome', 'like', '%' . $search . '%')->sortBy('p_preco')->skip($min)->take($produtospagina)->get();
+        } else {
+            $ordem = 0;
+            $produtos = Produto::where('p_nome', 'like', '%' . $search . '%')->skip($min)->take($produtospagina)->get();
+        }
         foreach($produtos as $produto) {
             $produto->p_imagem = Imagem::where('p_id', '=', $produto->p_id)->first()->i_nome;
+            $produto->p_review = round(Review::where('p_id', '=', $produto->p_id)->avg('r_avaliacao'), 2);
+            if($produto->p_review == null) {
+                $produto->p_review = 0;
+            }
         }
 
-        return view('utilizadores/paginainicioclientes')->with('produtos', $produtos);
+        return view('utilizadores/paginainicioclientes')
+            ->with('produtos', $produtos)
+            ->with('totalpaginas', $totalpaginas)
+            ->with('pagina', $pagina)
+            ->with('produtospagina', $produtospagina)
+            ->with('ordem', $ordem)
+            ->with('search', $search);
 
     }
 
