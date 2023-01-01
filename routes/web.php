@@ -32,6 +32,11 @@ Route::get('/utilizador/registo', function () {
     return view('utilizadores/registo');
 });
 
+//route para aceder à pagina sobre + contactos
+Route::get('/sobre-contactos', function () {
+    return view('utilizadores/sobre-contactos');
+});
+
 
 //routes de login e logout
 Route::post('/utilizador/login', [UserController::class, 'login']);
