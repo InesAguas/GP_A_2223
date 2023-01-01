@@ -228,6 +228,7 @@ class UserController extends Controller
         return view('utilizadores/utilizadores')->with('users', $users);
     }
 
+
     /**
      * Get the error messages for the defined validation rules.
      *
