@@ -47,8 +47,11 @@ input::placeholder {
 }
 
 </style>
+
+@section('header')
+@include('navbar')
+@endsection
 @section('content')
-    <p>Testee</p>
     <div>
         <div class = "searchbar">
             <div id='container'>

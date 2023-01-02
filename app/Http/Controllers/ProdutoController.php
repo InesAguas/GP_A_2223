@@ -103,8 +103,79 @@ class ProdutoController extends Controller
             return abort(404);
         }
 
+        $produto->p_imagem = Imagem::where('p_id', '=', $produto->p_id)->pluck('i_nome');
+
         return view('produtos/editarproduto')->with('produto', $produto);
         
+    }
+
+    public function editarProduto(Request $request) {
+        if(Auth::user()->u_id == 1) {
+            $produto = Produto::where('p_id', '=', $request->id)->first();
+        } else {
+            $produto = Produto::where('p_id', '=', $request->id)->where('u_id', '=', Auth::user()->u_id)->first();
+        }
+        
+        if($produto == null) {
+            return abort(404);
+        }
+
+        $data = $request->validate([
+            'nome' => 'required',
+            'categoria' => 'required',
+            'preco' => 'required',
+            'stock' => 'required',
+            'descricao' => 'required',
+        ],
+        [
+            'nome.required' => 'Tem de introduzir um nome.',
+            'categoria.required' => 'Tem de introduzir uma categoria',
+            'preco.required' => 'Tem de introduzir um preço',
+            'stock.required' => 'Tem de introduzir o stock',
+            'descricao.required' => 'Tem de introduzir uma descrição',
+        ]);
+
+        if($request->preco < 0.5 || $request->preco > 1000) {
+            return back()
+            ->withErrors(['preco' => 'O preço tem de ser entre 0.5 e 1000']);
+        }
+
+        if($request->stock < 0 || $request->stock > 9999) {
+            return back()
+            ->withErrors(['stock' => 'O stock tem de ser entre 0 e 9999']);
+        }
+
+        if($request->imagens != null && count($request->imagens) > 7) {
+            return back()
+            ->withErrors(['imagens' => 'Nao pode inserir mais que 7 imagens']);
+        }
+
+        $produto->p_nome = $data['nome'];
+        $produto->p_categoria = $data['categoria'];
+        $produto->p_preco = $data['preco'];
+        $produto->p_descricao = $data['descricao'];
+        $produto->p_stock = $data['stock'];
+
+        $produto->save();
+
+        $i = 0;
+
+        if($request->imagens != null && count($request->imagens) > 0) {
+            foreach($data['imagens'] as $image) {
+                $imagename = $produto->p_id . '_' . ++$i . '.' . $image->extension();
+                $image->move(public_path('img/produtos'), $imagename);
+                $imagem = new Imagem();
+                $imagem->i_nome = $imagename;
+                $imagem->p_id = $produto->p_id;
+                $imagem->save();
+            }
+        }
+
+        $produto->p_imagem = Imagem::where('p_id', '=', $produto->p_id)->pluck('i_nome');
+        
+        return back()
+            ->with('produto', $produto)
+            ->with('sucesso', 'Produto alterado com sucesso.');
     }
 
     public function paginaInicial(Request $request) {
@@ -156,6 +227,21 @@ class ProdutoController extends Controller
             ->with('ordem', $ordem)
             ->with('search', $search);
 
+    }
+
+    public function apagarProduto(Request $request) {
+        if(Auth::user()->u_id == 1) {
+            $produto = Produto::where('p_id', '=', $request->id)->first();
+        } else {
+            $produto = Produto::where('p_id', '=', $request->id)->where('u_id', '=', Auth::user()->u_id)->first();
+        }
+
+        if($produto == null) {
+            return abort(404);
+        }
+        
+        $produto->delete();
+        return back()->with('sucesso', 'Produto apagado com sucesso.');
     }
 
     public function detalhesProduto(Request $request) {
