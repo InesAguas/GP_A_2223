@@ -2,6 +2,7 @@
 <nav class="navbar ">
     <div class="container-fluid ">
       <a class="navbar-brand" href="{{ url('/')}}"><img src="/img/logotipo.png" width="70" height="55"></a>
+      <a href="{{url('/sobre-contactos')}}">Sobre nós</a>
       <form class="d-flex">
         <input class="form-control form-control-lg ps-3 pe-3 rounded-pill" type="search" placeholder="Search" name="search" aria-label="Search">
         <button class="btn btn-outline-success color-green-2 rounded-circle " type="submit"><span><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-search" viewBox="0 0 16 16">
