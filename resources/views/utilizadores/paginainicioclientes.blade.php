@@ -12,63 +12,6 @@
   </div>
 </div>
 
-<!--Falta trocar as categorias-->
-<div class="row mt-3 bg-light">
-  <div class="col d-flex flex-column align-items-center mt-3">
-    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="" class="bi bi-cup-straw" viewBox="0 0 16 16">
-      <path d="M13.902.334a.5.5 0 0 1-.28.65l-2.254.902-.4 1.927c.376.095.715.215.972.367.228.135.56.396.56.82 0 .046-.004.09-.011.132l-.962 9.068a1.28 1.28 0 0 1-.524.93c-.488.34-1.494.87-3.01.87-1.516 0-2.522-.53-3.01-.87a1.28 1.28 0 0 1-.524-.93L3.51 5.132A.78.78 0 0 1 3.5 5c0-.424.332-.685.56-.82.262-.154.607-.276.99-.372C5.824 3.614 6.867 3.5 8 3.5c.712 0 1.389.045 1.985.127l.464-2.215a.5.5 0 0 1 .303-.356l2.5-1a.5.5 0 0 1 .65.278zM9.768 4.607A13.991 13.991 0 0 0 8 4.5c-1.076 0-2.033.11-2.707.278A3.284 3.284 0 0 0 4.645 5c.146.073.362.15.648.222C5.967 5.39 6.924 5.5 8 5.5c.571 0 1.109-.03 1.588-.085l.18-.808zm.292 1.756C9.445 6.45 8.742 6.5 8 6.5c-1.133 0-2.176-.114-2.95-.308a5.514 5.514 0 0 1-.435-.127l.838 8.03c.013.121.06.186.102.215.357.249 1.168.69 2.438.69 1.27 0 2.081-.441 2.438-.69.042-.029.09-.094.102-.215l.852-8.03a5.517 5.517 0 0 1-.435.127 8.88 8.88 0 0 1-.89.17zM4.467 4.884s.003.002.005.006l-.005-.006zm7.066 0-.005.006c.002-.004.005-.006.005-.006zM11.354 5a3.174 3.174 0 0 0-.604-.21l-.099.445.055-.013c.286-.072.502-.149.648-.222z"/>
-    </svg>
-    <p class=""><small>categoria 1</small> </p>
-  </div>
-  <div class="col d-flex flex-column align-items-center mt-3">
-    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="" class="bi bi-cup-straw" viewBox="0 0 16 16">
-      <path d="M13.902.334a.5.5 0 0 1-.28.65l-2.254.902-.4 1.927c.376.095.715.215.972.367.228.135.56.396.56.82 0 .046-.004.09-.011.132l-.962 9.068a1.28 1.28 0 0 1-.524.93c-.488.34-1.494.87-3.01.87-1.516 0-2.522-.53-3.01-.87a1.28 1.28 0 0 1-.524-.93L3.51 5.132A.78.78 0 0 1 3.5 5c0-.424.332-.685.56-.82.262-.154.607-.276.99-.372C5.824 3.614 6.867 3.5 8 3.5c.712 0 1.389.045 1.985.127l.464-2.215a.5.5 0 0 1 .303-.356l2.5-1a.5.5 0 0 1 .65.278zM9.768 4.607A13.991 13.991 0 0 0 8 4.5c-1.076 0-2.033.11-2.707.278A3.284 3.284 0 0 0 4.645 5c.146.073.362.15.648.222C5.967 5.39 6.924 5.5 8 5.5c.571 0 1.109-.03 1.588-.085l.18-.808zm.292 1.756C9.445 6.45 8.742 6.5 8 6.5c-1.133 0-2.176-.114-2.95-.308a5.514 5.514 0 0 1-.435-.127l.838 8.03c.013.121.06.186.102.215.357.249 1.168.69 2.438.69 1.27 0 2.081-.441 2.438-.69.042-.029.09-.094.102-.215l.852-8.03a5.517 5.517 0 0 1-.435.127 8.88 8.88 0 0 1-.89.17zM4.467 4.884s.003.002.005.006l-.005-.006zm7.066 0-.005.006c.002-.004.005-.006.005-.006zM11.354 5a3.174 3.174 0 0 0-.604-.21l-.099.445.055-.013c.286-.072.502-.149.648-.222z"/>
-    </svg>
-    <p class=""><small>categoria 1</small> </p>
-  </div>
-  <div class="col d-flex flex-column align-items-center mt-3">
-    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="" class="bi bi-cup-straw" viewBox="0 0 16 16">
-      <path d="M13.902.334a.5.5 0 0 1-.28.65l-2.254.902-.4 1.927c.376.095.715.215.972.367.228.135.56.396.56.82 0 .046-.004.09-.011.132l-.962 9.068a1.28 1.28 0 0 1-.524.93c-.488.34-1.494.87-3.01.87-1.516 0-2.522-.53-3.01-.87a1.28 1.28 0 0 1-.524-.93L3.51 5.132A.78.78 0 0 1 3.5 5c0-.424.332-.685.56-.82.262-.154.607-.276.99-.372C5.824 3.614 6.867 3.5 8 3.5c.712 0 1.389.045 1.985.127l.464-2.215a.5.5 0 0 1 .303-.356l2.5-1a.5.5 0 0 1 .65.278zM9.768 4.607A13.991 13.991 0 0 0 8 4.5c-1.076 0-2.033.11-2.707.278A3.284 3.284 0 0 0 4.645 5c.146.073.362.15.648.222C5.967 5.39 6.924 5.5 8 5.5c.571 0 1.109-.03 1.588-.085l.18-.808zm.292 1.756C9.445 6.45 8.742 6.5 8 6.5c-1.133 0-2.176-.114-2.95-.308a5.514 5.514 0 0 1-.435-.127l.838 8.03c.013.121.06.186.102.215.357.249 1.168.69 2.438.69 1.27 0 2.081-.441 2.438-.69.042-.029.09-.094.102-.215l.852-8.03a5.517 5.517 0 0 1-.435.127 8.88 8.88 0 0 1-.89.17zM4.467 4.884s.003.002.005.006l-.005-.006zm7.066 0-.005.006c.002-.004.005-.006.005-.006zM11.354 5a3.174 3.174 0 0 0-.604-.21l-.099.445.055-.013c.286-.072.502-.149.648-.222z"/>
-    </svg>
-    <p class=""><small>categoria 1</small> </p>
-  </div>
-  <div class="col d-flex flex-column align-items-center mt-3">
-    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="" class="bi bi-cup-straw" viewBox="0 0 16 16">
-      <path d="M13.902.334a.5.5 0 0 1-.28.65l-2.254.902-.4 1.927c.376.095.715.215.972.367.228.135.56.396.56.82 0 .046-.004.09-.011.132l-.962 9.068a1.28 1.28 0 0 1-.524.93c-.488.34-1.494.87-3.01.87-1.516 0-2.522-.53-3.01-.87a1.28 1.28 0 0 1-.524-.93L3.51 5.132A.78.78 0 0 1 3.5 5c0-.424.332-.685.56-.82.262-.154.607-.276.99-.372C5.824 3.614 6.867 3.5 8 3.5c.712 0 1.389.045 1.985.127l.464-2.215a.5.5 0 0 1 .303-.356l2.5-1a.5.5 0 0 1 .65.278zM9.768 4.607A13.991 13.991 0 0 0 8 4.5c-1.076 0-2.033.11-2.707.278A3.284 3.284 0 0 0 4.645 5c.146.073.362.15.648.222C5.967 5.39 6.924 5.5 8 5.5c.571 0 1.109-.03 1.588-.085l.18-.808zm.292 1.756C9.445 6.45 8.742 6.5 8 6.5c-1.133 0-2.176-.114-2.95-.308a5.514 5.514 0 0 1-.435-.127l.838 8.03c.013.121.06.186.102.215.357.249 1.168.69 2.438.69 1.27 0 2.081-.441 2.438-.69.042-.029.09-.094.102-.215l.852-8.03a5.517 5.517 0 0 1-.435.127 8.88 8.88 0 0 1-.89.17zM4.467 4.884s.003.002.005.006l-.005-.006zm7.066 0-.005.006c.002-.004.005-.006.005-.006zM11.354 5a3.174 3.174 0 0 0-.604-.21l-.099.445.055-.013c.286-.072.502-.149.648-.222z"/>
-    </svg>
-    <p class=""><small>categoria 1</small> </p>
-  </div>
-  <div class="col d-flex flex-column align-items-center mt-3">
-    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="" class="bi bi-cup-straw" viewBox="0 0 16 16">
-      <path d="M13.902.334a.5.5 0 0 1-.28.65l-2.254.902-.4 1.927c.376.095.715.215.972.367.228.135.56.396.56.82 0 .046-.004.09-.011.132l-.962 9.068a1.28 1.28 0 0 1-.524.93c-.488.34-1.494.87-3.01.87-1.516 0-2.522-.53-3.01-.87a1.28 1.28 0 0 1-.524-.93L3.51 5.132A.78.78 0 0 1 3.5 5c0-.424.332-.685.56-.82.262-.154.607-.276.99-.372C5.824 3.614 6.867 3.5 8 3.5c.712 0 1.389.045 1.985.127l.464-2.215a.5.5 0 0 1 .303-.356l2.5-1a.5.5 0 0 1 .65.278zM9.768 4.607A13.991 13.991 0 0 0 8 4.5c-1.076 0-2.033.11-2.707.278A3.284 3.284 0 0 0 4.645 5c.146.073.362.15.648.222C5.967 5.39 6.924 5.5 8 5.5c.571 0 1.109-.03 1.588-.085l.18-.808zm.292 1.756C9.445 6.45 8.742 6.5 8 6.5c-1.133 0-2.176-.114-2.95-.308a5.514 5.514 0 0 1-.435-.127l.838 8.03c.013.121.06.186.102.215.357.249 1.168.69 2.438.69 1.27 0 2.081-.441 2.438-.69.042-.029.09-.094.102-.215l.852-8.03a5.517 5.517 0 0 1-.435.127 8.88 8.88 0 0 1-.89.17zM4.467 4.884s.003.002.005.006l-.005-.006zm7.066 0-.005.006c.002-.004.005-.006.005-.006zM11.354 5a3.174 3.174 0 0 0-.604-.21l-.099.445.055-.013c.286-.072.502-.149.648-.222z"/>
-    </svg>
-    <p class=""><small>categoria 1</small> </p>
-  </div>
-  <div class="col d-flex flex-column align-items-center mt-3">
-    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="" class="bi bi-cup-straw" viewBox="0 0 16 16">
-      <path d="M13.902.334a.5.5 0 0 1-.28.65l-2.254.902-.4 1.927c.376.095.715.215.972.367.228.135.56.396.56.82 0 .046-.004.09-.011.132l-.962 9.068a1.28 1.28 0 0 1-.524.93c-.488.34-1.494.87-3.01.87-1.516 0-2.522-.53-3.01-.87a1.28 1.28 0 0 1-.524-.93L3.51 5.132A.78.78 0 0 1 3.5 5c0-.424.332-.685.56-.82.262-.154.607-.276.99-.372C5.824 3.614 6.867 3.5 8 3.5c.712 0 1.389.045 1.985.127l.464-2.215a.5.5 0 0 1 .303-.356l2.5-1a.5.5 0 0 1 .65.278zM9.768 4.607A13.991 13.991 0 0 0 8 4.5c-1.076 0-2.033.11-2.707.278A3.284 3.284 0 0 0 4.645 5c.146.073.362.15.648.222C5.967 5.39 6.924 5.5 8 5.5c.571 0 1.109-.03 1.588-.085l.18-.808zm.292 1.756C9.445 6.45 8.742 6.5 8 6.5c-1.133 0-2.176-.114-2.95-.308a5.514 5.514 0 0 1-.435-.127l.838 8.03c.013.121.06.186.102.215.357.249 1.168.69 2.438.69 1.27 0 2.081-.441 2.438-.69.042-.029.09-.094.102-.215l.852-8.03a5.517 5.517 0 0 1-.435.127 8.88 8.88 0 0 1-.89.17zM4.467 4.884s.003.002.005.006l-.005-.006zm7.066 0-.005.006c.002-.004.005-.006.005-.006zM11.354 5a3.174 3.174 0 0 0-.604-.21l-.099.445.055-.013c.286-.072.502-.149.648-.222z"/>
-    </svg>
-    <p class=""><small>categoria 1</small> </p>
-  </div>
-  <div class="col d-flex flex-column align-items-center mt-3">
-    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="" class="bi bi-cup-straw" viewBox="0 0 16 16">
-      <path d="M13.902.334a.5.5 0 0 1-.28.65l-2.254.902-.4 1.927c.376.095.715.215.972.367.228.135.56.396.56.82 0 .046-.004.09-.011.132l-.962 9.068a1.28 1.28 0 0 1-.524.93c-.488.34-1.494.87-3.01.87-1.516 0-2.522-.53-3.01-.87a1.28 1.28 0 0 1-.524-.93L3.51 5.132A.78.78 0 0 1 3.5 5c0-.424.332-.685.56-.82.262-.154.607-.276.99-.372C5.824 3.614 6.867 3.5 8 3.5c.712 0 1.389.045 1.985.127l.464-2.215a.5.5 0 0 1 .303-.356l2.5-1a.5.5 0 0 1 .65.278zM9.768 4.607A13.991 13.991 0 0 0 8 4.5c-1.076 0-2.033.11-2.707.278A3.284 3.284 0 0 0 4.645 5c.146.073.362.15.648.222C5.967 5.39 6.924 5.5 8 5.5c.571 0 1.109-.03 1.588-.085l.18-.808zm.292 1.756C9.445 6.45 8.742 6.5 8 6.5c-1.133 0-2.176-.114-2.95-.308a5.514 5.514 0 0 1-.435-.127l.838 8.03c.013.121.06.186.102.215.357.249 1.168.69 2.438.69 1.27 0 2.081-.441 2.438-.69.042-.029.09-.094.102-.215l.852-8.03a5.517 5.517 0 0 1-.435.127 8.88 8.88 0 0 1-.89.17zM4.467 4.884s.003.002.005.006l-.005-.006zm7.066 0-.005.006c.002-.004.005-.006.005-.006zM11.354 5a3.174 3.174 0 0 0-.604-.21l-.099.445.055-.013c.286-.072.502-.149.648-.222z"/>
-    </svg>
-    <p class=""><small>categoria 1</small> </p>
-  </div>
-  <div class="col d-flex flex-column align-items-center mt-3">
-    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="" class="bi bi-cup-straw" viewBox="0 0 16 16">
-      <path d="M13.902.334a.5.5 0 0 1-.28.65l-2.254.902-.4 1.927c.376.095.715.215.972.367.228.135.56.396.56.82 0 .046-.004.09-.011.132l-.962 9.068a1.28 1.28 0 0 1-.524.93c-.488.34-1.494.87-3.01.87-1.516 0-2.522-.53-3.01-.87a1.28 1.28 0 0 1-.524-.93L3.51 5.132A.78.78 0 0 1 3.5 5c0-.424.332-.685.56-.82.262-.154.607-.276.99-.372C5.824 3.614 6.867 3.5 8 3.5c.712 0 1.389.045 1.985.127l.464-2.215a.5.5 0 0 1 .303-.356l2.5-1a.5.5 0 0 1 .65.278zM9.768 4.607A13.991 13.991 0 0 0 8 4.5c-1.076 0-2.033.11-2.707.278A3.284 3.284 0 0 0 4.645 5c.146.073.362.15.648.222C5.967 5.39 6.924 5.5 8 5.5c.571 0 1.109-.03 1.588-.085l.18-.808zm.292 1.756C9.445 6.45 8.742 6.5 8 6.5c-1.133 0-2.176-.114-2.95-.308a5.514 5.514 0 0 1-.435-.127l.838 8.03c.013.121.06.186.102.215.357.249 1.168.69 2.438.69 1.27 0 2.081-.441 2.438-.69.042-.029.09-.094.102-.215l.852-8.03a5.517 5.517 0 0 1-.435.127 8.88 8.88 0 0 1-.89.17zM4.467 4.884s.003.002.005.006l-.005-.006zm7.066 0-.005.006c.002-.004.005-.006.005-.006zM11.354 5a3.174 3.174 0 0 0-.604-.21l-.099.445.055-.013c.286-.072.502-.149.648-.222z"/>
-    </svg>
-    <p class=""><small>categoria 1</small> </p>
-  </div>
-  <div class="col d-flex flex-column align-items-center mt-3">
-    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="" class="bi bi-cup-straw" viewBox="0 0 16 16">
-      <path d="M13.902.334a.5.5 0 0 1-.28.65l-2.254.902-.4 1.927c.376.095.715.215.972.367.228.135.56.396.56.82 0 .046-.004.09-.011.132l-.962 9.068a1.28 1.28 0 0 1-.524.93c-.488.34-1.494.87-3.01.87-1.516 0-2.522-.53-3.01-.87a1.28 1.28 0 0 1-.524-.93L3.51 5.132A.78.78 0 0 1 3.5 5c0-.424.332-.685.56-.82.262-.154.607-.276.99-.372C5.824 3.614 6.867 3.5 8 3.5c.712 0 1.389.045 1.985.127l.464-2.215a.5.5 0 0 1 .303-.356l2.5-1a.5.5 0 0 1 .65.278zM9.768 4.607A13.991 13.991 0 0 0 8 4.5c-1.076 0-2.033.11-2.707.278A3.284 3.284 0 0 0 4.645 5c.146.073.362.15.648.222C5.967 5.39 6.924 5.5 8 5.5c.571 0 1.109-.03 1.588-.085l.18-.808zm.292 1.756C9.445 6.45 8.742 6.5 8 6.5c-1.133 0-2.176-.114-2.95-.308a5.514 5.514 0 0 1-.435-.127l.838 8.03c.013.121.06.186.102.215.357.249 1.168.69 2.438.69 1.27 0 2.081-.441 2.438-.69.042-.029.09-.094.102-.215l.852-8.03a5.517 5.517 0 0 1-.435.127 8.88 8.88 0 0 1-.89.17zM4.467 4.884s.003.002.005.006l-.005-.006zm7.066 0-.005.006c.002-.004.005-.006.005-.006zM11.354 5a3.174 3.174 0 0 0-.604-.21l-.099.445.055-.013c.286-.072.502-.149.648-.222z"/>
-    </svg>
-    <p class=""><small>categoria 1</small> </p>
-  </div>
-</div>
 
 
 <div class="row mt-3 g-2 g-lg-3 bg-light">
@@ -77,39 +20,22 @@
     <div class="card">
       <div class="card-body">
         <p class="card-text"><small class="text-muted">Filtros</small></p>
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+        @if($stock == 1)
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onClick="stockFilter(this)" checked>
+        @else
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onClick="stockFilter(this)">
+        @endif
         <label class="form-check-label" for="flexCheckDefault"><small class="text-muted"> Apenas produtos em stock</small></label> <br>
         <ul>
-          <li class="" data-bs-toggle="collapse" href="#collapse1"      role="button" aria-expanded="false" aria-controls="collapse1">
-            <a href="#"><small>sub-categoria</small></a>
-            
-            <div class="collapse" id="collapse1">
-              <ul>
-                <li><a href="#">sub-categoria</a></li>
-                <li><a href="#">sub-categoria</a></li>
-                <li><a href="#">sub-categoria</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="" data-bs-toggle="collapse" href="#collapse2"      role="button" aria-expanded="false" aria-controls="collapse2">
-            <a href="#"><small>Categoria 3</small></a>
-            
-            <div class="collapse" id="collapse2">
-              <ul>
-                <li><a href="#">sub-categoria</a></li>
-                <li><a href="#">sub-categoria</a></li>
-                <li><a href="#">sub-categoria</a></li>
-              </ul>
-            </div>
+                @foreach($categorias as $categoria)
+                <li><a href="{{url('/?categoria=' . $categoria)}}">{{$categoria}}</a></li>
+                @endforeach
           </li>
           <li class="" data-bs-toggle="collapse" href="#collapse3"      role="button" aria-expanded="false" aria-controls="collapse3">
-            <a href="#"><small>sub-categoria</small></a>
-            
-            <div class="collapse" id="collapse3">
+            <small>Preço</small>
               
-              <label for="customRange2" class="form-label">0$ - 50$</label>
-              <input type="range" class="form-range" min="0" max="5" id="customRange2">
-            </div>
+              <label for="customRange2" class="form-label">0€ - 1000€</label>
+              <input type="range" class="form-range" min="0" max="100" id="customRange2">
           </li>
         </ul>
         
@@ -128,9 +54,9 @@
           <button type="button" class="btn border border-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="10,20">{{$produtospagina}}
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{url('/?pagina=' . $pagina . '&produtospagina=9' . '&ordem=' . $ordem)}}">9</a></li>
-            <li><a class="dropdown-item" href="{{url('/?pagina=' . $pagina . '&produtospagina=12' . '&ordem=' . $ordem)}}">12</a></li>
-            <li><a class="dropdown-item" href="{{url('/?pagina=' . $pagina . '&produtospagina=15' . '&ordem=' . $ordem)}}">15</a></li>
+            <li><a class="dropdown-item" href="{{url('/?produtospagina=9' . '&ordem=' . $ordem . '&stock=' . $stock)}}">9</a></li>
+            <li><a class="dropdown-item" href="{{url('/?produtospagina=12' . '&ordem=' . $ordem . '&stock=' . $stock)}}">12</a></li>
+            <li><a class="dropdown-item" href="{{url('/?produtospagina=15' . '&ordem=' . $ordem . '&stock=' . $stock)}}">15</a></li>
           </ul>
         </div>
         
@@ -139,9 +65,9 @@
             
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{url('/?pagina=' . $pagina . '&produtospagina=' . $produtospagina . '&ordem=1')}}">Descendente</a></li>
-            <li><a class="dropdown-item" href="{{url('/?pagina=' . $pagina . '&produtospagina=' . $produtospagina . '&ordem=2')}}">Ascendente</a></li>
-            <li><a class="dropdown-item" href="{{url('/?pagina=' . $pagina . '&produtospagina=' . $produtospagina . '&ordem=0')}}">Sem ordem</a></li>
+            <li><a class="dropdown-item" href="{{url('/?produtospagina=' . $produtospagina . '&ordem=1' . '&stock=' . $stock)}}">Descendente</a></li>
+            <li><a class="dropdown-item" href="{{url('/?produtospagina=' . $produtospagina . '&ordem=2' . '&stock=' . $stock)}}">Ascendente</a></li>
+            <li><a class="dropdown-item" href="{{url('/?produtospagina=' . $produtospagina . '&ordem=0' . '&stock=' . $stock)}}">Sem ordem</a></li>
           </ul>
         </div>
       </div>
@@ -222,7 +148,7 @@
                 @else
                 <li class="page-item disabled">
                   @endif
-                  <a class="page-link"  href="{{url('/?pagina=' . ($pagina-1) . '&produtospagina=' . $produtospagina . '&ordem=' . $ordem)}}">Previous</a>
+                  <a class="page-link"  href="{{url('/?pagina=' . ($pagina-1) . '&produtospagina=' . $produtospagina . '&ordem=' . $ordem . '&stock=' . $stock)}}">Previous</a>
                 </li>
                 @for($i = 1; $i <= $totalpaginas; $i++)
                 @if($i == $pagina)
@@ -230,14 +156,14 @@
                   @else
                   <li class="page-item">
                     @endif
-                    <a class="page-link" href="{{url('/?pagina=' . $i . '&produtospagina=' . $produtospagina . '&ordem=' . $ordem)}}">{{$i}}</a></li>
+                    <a class="page-link" href="{{url('/?pagina=' . $i . '&produtospagina=' . $produtospagina . '&ordem=' . $ordem . '&stock=' . $stock)}}">{{$i}}</a></li>
                     @endfor
                     @if($totalpaginas > $pagina)
                     <li class="page-item">
                       @else
                       <li class="page-item disabled">
                         @endif
-                        <a class="page-link" href="{{url('/?pagina=' . ($pagina+1) . '&produtospagina=' . $produtospagina . '&ordem=' . $ordem)}}">Next</a>
+                        <a class="page-link" href="{{url('/?pagina=' . ($pagina+1) . '&produtospagina=' . $produtospagina . '&ordem=' . $ordem . '&stock=' . $stock)}}">Next</a>
                       </li>
                     </ul>
                   </nav>
@@ -245,5 +171,18 @@
               </div>
             </div>
           </div>
-          
+
+          <script>
+            function stockFilter(cb) {  
+              if(cb.checked) {
+                url = "{{url('/?produtospagina=' . $produtospagina . '&ordem=' . $ordem . '&stock=1')}}";
+                url = url.replace(/&amp;/g, "&");
+                window.location.href = url;
+              } else {
+                url = "{{url('/?produtospagina=' . $produtospagina . '&ordem=' . $ordem . '&stock=0')}}";
+                url = url.replace(/&amp;/g, "&");
+                window.location.href = url;
+              }
+            }
+            </script>
           @endsection
