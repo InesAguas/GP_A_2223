@@ -253,10 +253,10 @@ class ProdutoController extends Controller
 
         if($request->ordem == 1) {
             $ordem = $request->ordem;
-            $produtos = Produto::where('p_nome', 'like', '%' . $search . '%')->sortByDesc('p_preco')->skip($min)->take($produtospagina)->get();
+            $produtos = Produto::where('p_nome', 'like', '%' . $search . '%')->orderBy('p_preco', 'DESC')->skip($min)->take($produtospagina)->get();
         } else if($request->ordem == 2) {
             $ordem = $request->ordem;
-            $produtos = Produto::where('p_nome', 'like', '%' . $search . '%')->sortBy('p_preco')->skip($min)->take($produtospagina)->get();
+            $produtos = Produto::where('p_nome', 'like', '%' . $search . '%')->orderBy('p_preco', 'ASC')->skip($min)->take($produtospagina)->get();
         } else {
             $ordem = 0;
             $produtos = Produto::where('p_nome', 'like', '%' . $search . '%')->skip($min)->take($produtospagina)->get();
