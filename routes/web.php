@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EncomendaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProdutoController;
@@ -63,6 +64,7 @@ Route::middleware(['auth', 'socio'])->group(function () {
     Route::get('/produtos/{id}/editarproduto', [ProdutoController::class, 'editarProdutoView']);
     Route::put('/produtos/{id}/editarproduto', [ProdutoController::class, 'editarProduto']);
     Route::delete('/produtos/{id}/apagarproduto', [ProdutoController::class, 'apagarProduto']);
+    Route::get('/administracao/encomendas', [EncomendaController::class, 'adminEncomendas']);
 });
 
 //grupo de routes que precisam de verificar se existe alguem autenticado e se é cliente

@@ -1,8 +1,11 @@
 <!--navbar-->
 <nav class="navbar ">
   <div class="container-fluid ">
+    <div>
     <a class="navbar-brand" href="{{ url('/')}}"><img src="/img/logotipo.png" width="70" height="55"></a>
-    <a href="{{url('/sobre-contactos')}}">Sobre nós </a>
+    
+    <a href="{{url('/sobre-contactos')}}" class="link-secondary" style="font-size:25px;">Sobre nós </a>
+    </div>
     <div>
       
       <a href="{{ url('/utilizador/desejos')}}"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-cart-check-fill " viewBox="0 0 20 16">

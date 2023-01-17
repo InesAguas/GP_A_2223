@@ -241,26 +241,46 @@ class ProdutoController extends Controller
         if($request->produtospagina == null) {
             $request->produtospagina = 9;
         }
+
+        if($request->stock == null) {
+            $request->stock = 0;
+        }
         
         $pagina = $request->pagina;   
         $produtospagina = $request->produtospagina;   
         $search = $request->search;
+        $stock = $request->stock;
 
         $totalpaginas = Produto::all();
         $totalpaginas = ceil(count($totalpaginas) / $produtospagina);
 
         $min = ($pagina-1)*$produtospagina;
 
-        if($request->ordem == 1) {
-            $ordem = $request->ordem;
-            $produtos = Produto::where('p_nome', 'like', '%' . $search . '%')->orderBy('p_preco', 'DESC')->skip($min)->take($produtospagina)->get();
-        } else if($request->ordem == 2) {
-            $ordem = $request->ordem;
-            $produtos = Produto::where('p_nome', 'like', '%' . $search . '%')->orderBy('p_preco', 'ASC')->skip($min)->take($produtospagina)->get();
+        
+        if($stock) {
+            if($request->ordem == 1) {
+                $ordem = $request->ordem;
+                $produtos = Produto::where('p_nome', 'like', '%' . $search . '%')->where('p_stock', '>', '0')->orderBy('p_preco', 'DESC')->skip($min)->take($produtospagina)->get();
+            } else if($request->ordem == 2) {
+                $ordem = $request->ordem;
+                $produtos = Produto::where('p_nome', 'like', '%' . $search . '%')->where('p_stock', '>', '0')->orderBy('p_preco', 'ASC')->skip($min)->take($produtospagina)->get();
+            } else {
+                $ordem = 0;
+                $produtos = Produto::where('p_nome', 'like', '%' . $search . '%')->where('p_stock', '>', '0')->skip($min)->take($produtospagina)->get();
+            }
         } else {
-            $ordem = 0;
-            $produtos = Produto::where('p_nome', 'like', '%' . $search . '%')->skip($min)->take($produtospagina)->get();
+            if($request->ordem == 1) {
+                $ordem = $request->ordem;
+                $produtos = Produto::where('p_nome', 'like', '%' . $search . '%')->orderBy('p_preco', 'DESC')->skip($min)->take($produtospagina)->get();
+            } else if($request->ordem == 2) {
+                $ordem = $request->ordem;
+                $produtos = Produto::where('p_nome', 'like', '%' . $search . '%')->orderBy('p_preco', 'ASC')->skip($min)->take($produtospagina)->get();
+            } else {
+                $ordem = 0;
+                $produtos = Produto::where('p_nome', 'like', '%' . $search . '%')->skip($min)->take($produtospagina)->get();
+            }
         }
+        
         foreach($produtos as $produto) {
             $produto->p_imagem = Imagem::where('p_id', '=', $produto->p_id)->first()->i_nome;
             $produto->p_review = round(Review::where('p_id', '=', $produto->p_id)->avg('r_avaliacao'), 2);
@@ -269,13 +289,17 @@ class ProdutoController extends Controller
             }
         }
 
+        $categorias = Produto::groupBy('p_categoria')->pluck('p_categoria');
+
         return view('utilizadores/paginainicioclientes')
             ->with('produtos', $produtos)
             ->with('totalpaginas', $totalpaginas)
             ->with('pagina', $pagina)
             ->with('produtospagina', $produtospagina)
             ->with('ordem', $ordem)
-            ->with('search', $search);
+            ->with('search', $search)
+            ->with('categorias', $categorias)
+            ->with('stock', $stock);
 
     }
 
