@@ -21,6 +21,7 @@ use Illuminate\Http\Request;
 Route::middleware(['authcliente'])->group(function () {
     Route::get('/', [ProdutoController::class, 'paginaInicial']);
     Route::get('/produtos/{id}/detalhes', [ProdutoController::class, 'detalhesProduto']);
+    Route::post('/guardar-comentarios/{id}', [ProdutoController::class, 'guardarComentarios']);
 });
 
 //route para aceder à pagina de login
@@ -50,7 +51,6 @@ Route::post('/utilizador/registar', [UserController::class, 'registo']);
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/administracao/utilizadores', [UserController::class, 'utilizadores']);
     Route::get('/administracao/utilizadores/search/', [UserController::class, 'verUtilizadores'])->name('search', 'filter', 'estado');
-    
 });
 
 
