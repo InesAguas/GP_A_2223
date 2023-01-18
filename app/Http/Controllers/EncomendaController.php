@@ -155,4 +155,9 @@ class EncomendaController extends Controller
                 ->with('ordem', $request->ordem )
                 ->with('filter', $request->filter);
     }
+
+
+    public function cancelarEncomenda(Request $request) {
+        dd($request);
+    }
 }

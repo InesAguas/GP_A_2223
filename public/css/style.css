@@ -35,3 +35,7 @@ body{
 .esgotado{
     color: red;
 }
+
+#encomendaForm .offcanvas-body p{
+    font-size:medium;
+}
