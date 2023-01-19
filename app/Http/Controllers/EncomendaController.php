@@ -158,6 +158,33 @@ class EncomendaController extends Controller
 
 
     public function cancelarEncomenda(Request $request) {
-        dd($request);
+        $encomenda = Encomenda::where('e_id', '=', $request->id)->first();
+        if($encomenda == null) {
+            return abort(404);
+        }
+
+        if($encomenda->e_data_confirmada == null) {
+            $encomenda->e_estado = "cancelada";
+            $encomenda->save();
+            return back()->with('sucesso', 'Encomenda cancelada.');
+        }else {
+            return abort(404);
+        }
+    }
+
+    public function confirmarEncomenda(Request $request) {
+        $encomenda = Encomenda::where('e_id', '=', $request->id)->first();
+        if($encomenda == null) {
+            return abort(404);
+        }
+
+        if($encomenda->e_data_confirmada == null) {
+            $encomenda->e_data_confirmada = date('Y-m-d');;
+            $encomenda->e_estado = "em desenvolvimento";
+            $encomenda->save();
+            return back()->with('sucesso', 'Encomenda confirmada.');
+        }else {
+            return abort(404);
+        }
     }
 }

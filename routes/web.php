@@ -65,8 +65,8 @@ Route::middleware(['auth', 'socio'])->group(function () {
     Route::put('/produtos/{id}/editarproduto', [ProdutoController::class, 'editarProduto']);
     Route::delete('/produtos/{id}/apagarproduto', [ProdutoController::class, 'apagarProduto']);
     Route::get('/administracao/encomendas', [EncomendaController::class, 'adminEncomendas']);
-    Route::post('/administracao/encomendas/{id}/cancelarEncomenda', [EncomendaController::class, 'cancelarEncomenda']);
-    Route::post('/administracao/encomendas/{id}/confirmarEncomenda', [EncomendaController::class, 'cancelarEncomenda']);
+    Route::post('/administracao/encomendas/{id}/cancelarencomenda', [EncomendaController::class, 'cancelarEncomenda']);
+    Route::post('/administracao/encomendas/{id}/confirmarencomenda', [EncomendaController::class, 'confirmarEncomenda']);
 });
 
 //grupo de routes que precisam de verificar se existe alguem autenticado e se é cliente
