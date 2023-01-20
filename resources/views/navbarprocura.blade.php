@@ -4,6 +4,9 @@
       <div>
       <a class="navbar-brand" href="{{ url('/')}}"><img src="/img/logotipo.png" width="70" height="55"></a>
       <a href="{{url('/sobre-contactos')}}" class="link-secondary" style="font-size:25px;">Sobre nós </a>
+      @auth
+      {{$teste}}
+      @endauth
         </div>
       <form class="d-flex">
         <input class="form-control form-control-lg ps-3 pe-3 rounded-pill" type="search" placeholder="Search" name="search" aria-label="Search">
