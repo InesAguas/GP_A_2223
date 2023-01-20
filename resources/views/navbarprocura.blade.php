@@ -47,6 +47,9 @@
           <h5 class="offcanvas-title me-5" id="offcanvasNavbarLabel">Lista de Desejos</h5>
         </div>
         <div class="offcanvas-body ">
+          @foreach($desejos as $desejo)
+              <li>{{ $desejo->p_id }}</li>
+          @endforeach
         </div>
       </div>
   

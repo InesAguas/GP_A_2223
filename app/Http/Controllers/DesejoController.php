@@ -34,6 +34,7 @@ class DesejoController extends Controller
    
     public function verDesejos(Request $request)
     {
-
+        $desejos = Desejo::with('p_id')->get();
+        return view('desejos')->with('desejos', $desejos);
     }
 }
