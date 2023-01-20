@@ -37,19 +37,15 @@
 
 
                     <div class="row">
-                        <div class="col-12 mb-2"><input type="text" class="form-control" name="nome" placeholder="Nome" value="{{$user->u_nome}}"></div>
-                        <div class="col-12 mb-2"><input type="email" class="form-control" name="email" placeholder="E-mail" value="{{$user->email}}"></div>
-                        <div class=" col-12 mb-2"><input type="password" class="form-control " name="password" placeholder="Password"></div>
-                        <div class=" col-12 mb-2"><input type="text" class="form-control" name="morada" placeholder="Morada" value="{{$user->u_morada}}"></div>
+                        <div class="col-12 mb-2"><input type="text" class="form-control" name="nome" placeholder="Nome" value="{{$user->u_nome}}" required></div>
+                        <div class="col-12 mb-2"><input type="email" class="form-control" name="email" placeholder="E-mail" value="{{$user->email}}" required></div>
+                        <div class=" col-12 mb-2"><input type="password" class="form-control " name="password" placeholder="Password" required></div>
+                        <div class=" col-12 mb-2"><input type="text" class="form-control" name="morada" placeholder="Morada" value="{{$user->u_morada}}" required></div>
 
-                        <div class=" col-7 mb-2"><input type="text" class="form-control" placeholder="Código"></div>
-                        <div class="col-1 mb-2">
-                            <h3>-</h3>
-                        </div>
-                        <div class="col-4 mb-2"><input type="text" class="form-control" placeholder="Postal"></div>
 
-                        <div class="col-12 mb-2"><input type="text" class="form-control" name="nif" placeholder="NIF" value="{{$user->u_contribuinte}}"></div>
-                        <div class="col-12 mb-2"><input type="text" class="form-control" name="telemovel" placeholder="Telemóvel" value="{{$user->u_telefone}}"></div>
+
+                        <div class="col-12 mb-2"><input type="text" class="form-control" name="nif" placeholder="NIF" value="{{$user->u_contribuinte}}" required></div>
+                        <div class="col-12 mb-2"><input type="text" class="form-control" name="telemovel" placeholder="Telemóvel" value="{{$user->u_telefone}}" required></div>
                     </div>
 
 
