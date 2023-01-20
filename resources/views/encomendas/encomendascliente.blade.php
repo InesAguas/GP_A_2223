@@ -58,9 +58,9 @@
           <button type="button" class="btn border border-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="10,20">{{$produtospagina}}
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{url('/administracao/encomendas/?produtospagina=10' . '&ordem=' . $ordem)}}">10</a></li>
-            <li><a class="dropdown-item" href="{{url('/administracao/encomendas/?produtospagina=15' . '&ordem=' . $ordem)}}">15</a></li>
-            <li><a class="dropdown-item" href="{{url('/administracao/encomendas/?produtospagina=20' . '&ordem=' . $ordem)}}">20</a></li>
+            <li><a class="dropdown-item" href="{{url('/utilizador/encomendas/?produtospagina=10' . '&ordem=' . $ordem)}}">10</a></li>
+            <li><a class="dropdown-item" href="{{url('/utilizador/encomendas/?produtospagina=15' . '&ordem=' . $ordem)}}">15</a></li>
+            <li><a class="dropdown-item" href="{{url('/utilizador/encomendas/?produtospagina=20' . '&ordem=' . $ordem)}}">20</a></li>
           </ul>
         </div>
         
@@ -68,13 +68,23 @@
           <button type="button" class="btn border border-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="10,20"><small>@if($ordem == null || $ordem == 0) Data @elseif($ordem == 1) Data (mais antiga) @else Data (mais recente) @endif</small>
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{url('/administracao/encomendas/?produtospagina=' . $produtospagina . '&ordem=1')}}">Data (mais antiga)</a></li>
-            <li><a class="dropdown-item" href="{{url('/administracao/encomendas/?produtospagina=' . $produtospagina . '&ordem=2')}}">Data (mais recente)</a></li>
-            <li><a class="dropdown-item" href="{{url('/administracao/encomendas/?produtospagina=' . $produtospagina . '&ordem=0')}}">Sem ordem</a></li>
+            <li><a class="dropdown-item" href="{{url('/utilizador/encomendas/?produtospagina=' . $produtospagina . '&ordem=1')}}">Data (mais antiga)</a></li>
+            <li><a class="dropdown-item" href="{{url('/utilizador/encomendas/?produtospagina=' . $produtospagina . '&ordem=2')}}">Data (mais recente)</a></li>
+            <li><a class="dropdown-item" href="{{url('/utilizador/encomendas/?produtospagina=' . $produtospagina . '&ordem=0')}}">Sem ordem</a></li>
           </ul>
         </div>
       </div>
     </div>
+
+    @if(session('sucesso') != null)
+                    <div class="row p-3 mb-3">
+                        <div class="col text-center">
+                            <div class="alert alert-success" role="alert">
+                                {{session('sucesso')}}
+                            </div>
+                        </div>
+                    </div>
+                    @endif
     
     @if (count($encomendas) >= 1)
     @foreach ($encomendas as $encomenda)
@@ -83,15 +93,47 @@
         <div class="card ">
           <div class="row g-0 d-flex align-items-center">
             <div class="col-4">
-              <img src="https://www.auchan.pt/dw/image/v2/BFRC_PRD/on/demandware.static/-/Sites-auchan-pt-master-catalog/default/dw70ed3673/images/hi-res/002116994.jpg" class="card-img-top" alt="...">
+              @if(count($encomenda->imagens) == 1)
+              <div class="card-img-top">
+              <img src="/img/produtos/{{$encomenda->imagens[0]->i_nome}}"  alt="..." class="img-fluid">
+              </div>
+              @elseif(count($encomenda->imagens) == 2)
+              <img src="/img/produtos/{{$encomenda->imagens[0]->i_nome}}"  alt="..." style="max-width:45%">
+              <img src="/img/produtos/{{$encomenda->imagens[1]->i_nome}}"  alt="..." style="max-width:45%">
+              @elseif(count($encomenda->imagens) == 3)
+              <img src="/img/produtos/{{$encomenda->imagens[0]->i_nome}}"  alt="..." style="max-width:45%">
+              <img src="/img/produtos/{{$encomenda->imagens[1]->i_nome}}"  alt="..." style="max-width:45%">
+              <img src="/img/produtos/{{$encomenda->imagens[2]->i_nome}}"  alt="..." style="max-width:45%">
+              @elseif(count($encomenda->imagens) == 4)
+              <img src="/img/produtos/{{$encomenda->imagens[0]->i_nome}}"  alt="..." style="max-width:40%;">
+              <img src="/img/produtos/{{$encomenda->imagens[1]->i_nome}}"  alt="..." style="max-width:40%;">
+              <img src="/img/produtos/{{$encomenda->imagens[2]->i_nome}}"  alt="..." style="max-width:40%;">
+              <img src="/img/produtos/{{$encomenda->imagens[2]->i_nome}}"  alt="..." style="max-width:40%;">
+              @else
+              <img src="/img/produtos/{{$encomenda->imagens[0]->i_nome}}"  alt="..." style="max-width:40%;">
+              <img src="/img/produtos/{{$encomenda->imagens[1]->i_nome}}"  alt="..." style="max-width:40%;">
+              <img src="/img/produtos/{{$encomenda->imagens[2]->i_nome}}"  alt="..." style="max-width:40%;">
+              <strong>+ {{$encomenda->total_produtos -3}}</strong>
+              @endif
             </div>
             <div class="col-4">
               <div class="card-body">
-                <h6 class="card-title">{{$encomenda->p_nome}}</h6>
+                <h6 class="card-title">{{$encomenda->p_nome}} @if($encomenda->total_produtos >1) + {{$encomenda->total_produtos -1}} @endif</h6>
                 <p class="card-text"><small class="text-muted">Data da encomenda: {{$encomenda->e_data_criada}}</small> <br>
-                  <small class="text-muted">Data da entrega: @if($encomenda->e_data_entrega != null) {{$encomenda->e_data_entrega}} @else Ainda não entregue @endif</small> <br>
                   {{$encomenda->e_total}}€ <br>
-                  Cliente:  {{$encomenda->u_nome}}
+                  @if($encomenda->e_estado != 'cancelada')
+                    @if($encomenda->e_data_confirmada != null)
+                    <small>Encomenda Confirmada</small><br>
+                    @else
+                    <small>Encomenda Por Confirmar</small><br>
+                    @endif
+                    @if($encomenda->e_data_entrega != null)
+                    <small>Encomenda Entregue</small><br>
+                    @else
+                    <small>Encomenda Por Entregar</small><br>
+                    @endif
+                  
+                  @endif
                 </p>
               </div>
             </div>
@@ -103,6 +145,13 @@
                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
                   </svg>
               </div>
+              @elseif($encomenda->e_data_entrega != null)
+              <h5>Encomenda entregue</h5>
+              <div >
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="green" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                </svg>
+              </div>
               @elseif($encomenda->e_data_confirmada != null)
               <h5>Encomenda confirmada</h5>
               <div >
@@ -110,20 +159,12 @@
                   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                 </svg>
               </div>
-              @else
-              <h5>Confirmar encomenda?</h5>
-              <div >
-                <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="green" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                  </svg>
-                </button>
-                <button>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
-                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
-                  </svg>
-                </button>
-              </div>
+              @elseif($encomenda->e_data_entrega == null) 
+              <button class="navbar-toggler" type="submit" title="Cancelar encomenda">
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                </svg>
+              </button>
               @endif
               
             </div>
@@ -131,6 +172,42 @@
         </div>
       </div>
     </div>
+
+    <div id="tabcancelar">
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="encomendaForm{{$encomenda->e_id}}" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <h5 class="offcanvas-title me-5" id="offcanvasNavbarLabel">Cancelar encomenda</h5>
+      </div>
+      <div class="offcanvas-body ">
+          <h5>Encomenda a cancelar<h5>
+                <div class="card ">
+                  <div class="row g-0 d-flex align-items-center">
+                    <div class="col-3">
+                      <img src="/img/produtos/{{$encomenda->imagens[0]->i_nome}}" class="card-img-top" alt="...">
+                    </div>
+                    <div class="col">
+                      <div class="card-body">
+                        <h6 class="card-title">{{$encomenda->p_nome}}</h6>
+                        <p class="card-text"><small class="text-muted">Data da encomenda: {{$encomenda->e_data_criada}}</small> <br>
+                          {{$encomenda->e_total}}€ <br>
+                          Cliente:  {{$encomenda->u_nome}}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <br><br>
+            <form method="POST" action="/utilizador/encomendas/{{$encomenda->e_id}}/cancelarencomenda" enctype="multipart/form-data">
+              @csrf
+            <label for="descricao" class="form-label">Razão do cancelamento</label>
+            <textarea name='descricao' class="form-control mb-3" rows="3"></textarea>
+            <input type='submit' value='Confirmar Cancelamento' class="btn btn-light">
+            </form>
+            
+      </div>
+    </div>
+  </div>
     @endforeach
 
     @endif
@@ -144,7 +221,7 @@
               @else
               <li class="page-item disabled">
                 @endif
-                <a class="page-link"  href="{{url('/administracao/encomendas/?pagina=' . ($pagina-1) . '&produtospagina=' . $produtospagina . '&ordem=' . $ordem . '&filter=' . $filter)}}">Previous</a>
+                <a class="page-link"  href="{{url('/utilizador/encomendas/?pagina=' . ($pagina-1) . '&produtospagina=' . $produtospagina . '&ordem=' . $ordem . '&filter=' . $filter)}}">Previous</a>
               </li>
               @for($i = 1; $i <= $totalpaginas; $i++)
               @if($i == $pagina)
@@ -152,14 +229,14 @@
                 @else
                 <li class="page-item">
                   @endif
-                  <a class="page-link" href="{{url('/administracao/encomendas/?pagina=' . $i . '&produtospagina=' . $produtospagina . '&ordem=' . $ordem . '&filter=' . $filter)}}">{{$i}}</a></li>
+                  <a class="page-link" href="{{url('/utilizador/encomendas/?pagina=' . $i . '&produtospagina=' . $produtospagina . '&ordem=' . $ordem . '&filter=' . $filter)}}">{{$i}}</a></li>
                   @endfor
                   @if($totalpaginas > $pagina)
                   <li class="page-item">
                     @else
                     <li class="page-item disabled">
                       @endif
-                      <a class="page-link" href="{{url('/administracao/encomendas/?pagina=' . ($pagina+1) . '&produtospagina=' . $produtospagina . '&ordem=' . $ordem . '&filter=' . $filter)}}">Next</a>
+                      <a class="page-link" href="{{url('/utilizador/encomendas/?pagina=' . ($pagina+1) . '&produtospagina=' . $produtospagina . '&ordem=' . $ordem . '&filter=' . $filter)}}">Next</a>
                     </li>
           </ul>
         </nav>
@@ -171,13 +248,13 @@
 <script>
   function stockFilter(cb) {  
     if(cb.checked) {
-      url = "{{url('/administracao/encomendas/?produtospagina=' . $produtospagina . '&ordem=' . $ordem . '&filter=value')}}";
+      url = "{{url('/utilizador/encomendas/?produtospagina=' . $produtospagina . '&ordem=' . $ordem . '&filter=value')}}";
               url = url.replace(/&amp;/g, "&");
               url = url.replace('value', cb.value);
               console.log(url);
               window.location.href = url;  
     } else {
-      url = "{{url('/administracao/encomendas/?produtospagina=' . $produtospagina . '&ordem=' . $ordem)}}";
+      url = "{{url('/utilizador/encomendas/?produtospagina=' . $produtospagina . '&ordem=' . $ordem)}}";
       url = url.replace(/&amp;/g, "&");
       window.location.href = url;
     }
