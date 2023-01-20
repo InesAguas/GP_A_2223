@@ -7,14 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
-class DesejoController extends Controller
+class CarrinhoController extends Controller
 {
-    public function adicionarDesejo(Request $request)
+    public function adicionarAoCarrinho(Request $request)
     {
         $id = Desejo::find($request->id);
 
         if($id){
-            Session::flash('alert2', 'Esse produto já existe na lista de desejos!');
+            Session::flash('alert1', 'Esse produto já existe no carrinho de compras!');
             return back();
         }else{
             $user = Auth::user();
@@ -23,16 +23,16 @@ class DesejoController extends Controller
             $desejo = new Desejo();
             $desejo->p_id = $id;
             $desejo->u_id = $user->u_id;
+            //falta adicionar a quantidade
             $desejo->save();
-            Session::flash('success2', 'Produto adicionado com sucesso à lista dos desejos!');
+            Session::flash('success1', 'Produto adicionado com sucesso ao carrinho de compras!');
             return back();
         }
-        
       
        
     }
    
-    public function verDesejos(Request $request)
+    public function verProdutosCarrinho(Request $request)
     {
 
     }

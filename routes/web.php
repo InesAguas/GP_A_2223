@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\DesejoController;
 use App\Http\Controllers\EncomendaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProdutoController;
+use App\Models\Desejo;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 
@@ -72,6 +74,8 @@ Route::middleware(['auth', 'cliente'])->group(function () {
     Route::get('/utilizador/perfil', [UserController::class, 'verPerfil'])->name('perfil');
     Route::post('/utilizador/editarPerfil', [UserController::class, 'editarPerfil']);
     Route::post('/utilizador/apagarPerfil', [UserController::class, 'apagarPerfil']);
+    Route::post('adicionar-desejo', [DesejoController::class, 'adicionarDesejo']);
+    Route::post('adicionar-carrinho', [CarrinhoController::class, 'adicionarAoCarrinho']);
 });
 
 

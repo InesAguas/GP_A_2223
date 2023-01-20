@@ -112,10 +112,58 @@ if ($sum > 0) {
                     </div>
                     <div class="row p-3 m-1 d-flex align-items-center bg-white">
                         <div class="col ">
-                            <button type="button" class="btn btn-success">Adicionar ao carrinho</button>
+                            <form action="/adicionar-desejo" method="POST">
+                                @csrf
+                                <input type="hidden" name="id" value="{{$produto->p_id}}">
+                                <input type="submit" class="btn btn-success" value="Adicionar ao Carrinho de Compras">
+                            </form>
+                            @if (session()->has('alert1'))
+                                <div class="alert alert-danger" id="alert-message">
+                                    {{ session()->get('alert1') }}
+                                </div>
+                                <script>
+                                    setTimeout(() => {
+                                        document.getElementById("alert-message").remove();
+                                    }, 3000); // 3000 milliseconds = 3 seconds
+                                </script>
+                            @endif
+                            @if (session()->has('success1'))
+                            <div class="alert alert-success" id="alert-message">
+                                    {{ session()->get('success1') }}
+                                </div>
+                                <script>
+                                    setTimeout(() => {
+                                        document.getElementById("alert-message").remove();
+                                    }, 3000); // 3000 milliseconds = 3 seconds
+                                </script>
+                            @endif
                         </div>
                         <div class="col ">
-                            <button type="button" class="btn btn-success">Adicionar á lista de desejos</button>
+                            <form action="/adicionar-desejo" method="POST">
+                                @csrf
+                                <input type="hidden" name="id" value="{{$produto->p_id}}"><br>
+                                <input type="submit" class="btn btn-success" value="Adicionar à lista de desejos">
+                            </form>
+                            @if (session()->has('alert1'))
+                                <div class="alert alert-danger" id="alert-message">
+                                    {{ session()->get('alert1') }}
+                                </div>
+                                <script>
+                                    setTimeout(() => {
+                                        document.getElementById("alert-message").remove();
+                                    }, 3000); // 3000 milliseconds = 3 seconds
+                                </script>
+                            @endif
+                            @if (session()->has('success2'))
+                            <div class="alert alert-success" id="alert-message">
+                                    {{ session()->get('success2') }}
+                                </div>
+                                <script>
+                                    setTimeout(() => {
+                                        document.getElementById("alert-message").remove();
+                                    }, 3000); // 3000 milliseconds = 3 seconds
+                                </script>
+                            @endif
                         </div>
                     </div>
                 </div>
