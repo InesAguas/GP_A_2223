@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Encomenda;
-use App\Models\Produto;
+use App\Models\Imagem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -74,7 +74,14 @@ class EncomendaController extends Controller
         } else {
             $request->filter = 0;
         }
-        
+
+        foreach($encomendas as $encomenda) {
+            $encomenda->total_produtos = DB::table('produtos_encomendas')->where('e_id', '=', $encomenda->e_id)->count();
+            $encomenda->imagens = Imagem::whereIn('p_id', function($query) use(&$encomenda) {
+                $query->select(DB::raw("p_id FROM produtos_encomendas WHERE e_id = $encomenda->e_id AND i_nome LIKE '%_1%'"));    
+            })->select('i_nome')->get();
+        }
+
         return view('encomendas/adminencomendas')
                 ->with('encomendas', $encomendas)
                 ->with('pagina', $pagina)
@@ -145,8 +152,14 @@ class EncomendaController extends Controller
         } else {
             $request->filter = 0;
         }
-        
-        $encomendas = $encomendas->where('u_id', '=', Auth::user()->u_id);
+
+        foreach($encomendas as $encomenda) {
+            $encomenda->total_produtos = DB::table('produtos_encomendas')->where('e_id', '=', $encomenda->e_id)->count();
+            $encomenda->imagens = Imagem::whereIn('p_id', function($query) use(&$encomenda) {
+                $query->select(DB::raw("p_id FROM produtos_encomendas WHERE e_id = $encomenda->e_id AND i_nome LIKE '%_1%'"));    
+            })->select('i_nome')->get();
+        }
+
         return view('encomendas/adminencomendas')
                 ->with('encomendas', $encomendas)
                 ->with('pagina', $pagina)
@@ -165,6 +178,7 @@ class EncomendaController extends Controller
 
         if($encomenda->e_data_confirmada == null) {
             $encomenda->e_estado = "cancelada";
+            $encomenda->e_comentario = $request->descricao;
             $encomenda->save();
             return back()->with('sucesso', 'Encomenda cancelada.');
         }else {
@@ -183,6 +197,22 @@ class EncomendaController extends Controller
             $encomenda->e_estado = "em desenvolvimento";
             $encomenda->save();
             return back()->with('sucesso', 'Encomenda confirmada.');
+        }else {
+            return abort(404);
+        }
+    }
+
+    public function entregarEncomenda(Request $request) {
+        $encomenda = Encomenda::where('e_id', '=', $request->id)->first();
+        if($encomenda == null) {
+            return abort(404);
+        }
+
+        if($encomenda->e_data_confirmada != null) {
+            $encomenda->e_data_entrega = date('Y-m-d');;
+            $encomenda->e_estado = "concluida";
+            $encomenda->save();
+            return back()->with('sucesso', 'Encomenda entregue.');
         }else {
             return abort(404);
         }
