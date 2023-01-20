@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Desejo;
+use App\Models\CarrinhoCompras;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -11,7 +11,7 @@ class CarrinhoController extends Controller
 {
     public function adicionarAoCarrinho(Request $request)
     {
-        $id = Desejo::find($request->id);
+        $id = CarrinhoCompras::find($request->id);
 
         if($id){
             Session::flash('alert1', 'Esse produto já existe no carrinho de compras!');
@@ -20,7 +20,7 @@ class CarrinhoController extends Controller
             $user = Auth::user();
             $id = $request->id;
     
-            $desejo = new Desejo();
+            $desejo = new CarrinhoCompras();
             $desejo->p_id = $id;
             $desejo->u_id = $user->u_id;
             //falta adicionar a quantidade
