@@ -35,3 +35,18 @@ body{
 .esgotado{
     color: red;
 }
+
+#tabcancelar .offcanvas-body p{
+    font-size:medium;
+}
+
+.flex-container {
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: flex-start; /* should align items to the top of your flex row if they don't reach 100px in height */
+}
+
+.flex-container img{
+    max-width: 200px;
+    height:auto;
+}
