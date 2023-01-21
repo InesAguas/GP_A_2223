@@ -47,7 +47,7 @@
         </div>
         <div class="offcanvas-body ">
           @auth
-          @foreach($desejos as $desejo)
+          @foreach($desejos->reverse() as $desejo)
           <div class="row g-2 mt-1">
             <div class="col">
               <div class="card ">
@@ -61,6 +61,19 @@
                       <h6 class="card-title">{{$desejo->p_nome}}</h6>
                       <p class="card-text"><small class="text-muted">Descrição: {{$desejo->p_descricao}}</small></p>
                       <p class="card-text"><small class="text-muted">Preço: {{$desejo->p_preco}}€</small> <br>
+                    </div>
+                  </div>
+                  <div class="col-4 text-center">
+                    <div >
+                      <form action="{{ route('apagarDesejo', $desejo->p_id) }}" method="POST">
+                        @csrf
+                         @method('DELETE')
+                        <button type="submit" style="background-color: rgb(255, 255, 255, 1); border: none; cursor: pointer; outline: none;">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                          </svg>
+                        </button>
+                      </form>
                     </div>
                   </div>
                 </div>

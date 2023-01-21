@@ -144,9 +144,9 @@ if ($sum > 0) {
                                 <input type="hidden" name="id" value="{{$produto->p_id}}"><br>
                                 <input type="submit" class="btn btn-success" value="Adicionar à lista de desejos">
                             </form>
-                            @if (session()->has('alert1'))
+                            @if (session()->has('alert2'))
                                 <div class="alert alert-danger" id="alert-message">
-                                    {{ session()->get('alert1') }}
+                                    {{ session()->get('alert2') }}
                                 </div>
                                 <script>
                                     setTimeout(() => {
