@@ -5,7 +5,6 @@
       <a class="navbar-brand" href="{{ url('/')}}"><img src="/img/logotipo.png" width="70" height="55"></a>
       <a href="{{url('/sobre-contactos')}}" class="link-secondary" style="font-size:25px;">Sobre nós </a>
       @auth
-      {{$teste}}
       @endauth
         </div>
       <form class="d-flex">
@@ -47,9 +46,29 @@
           <h5 class="offcanvas-title me-5" id="offcanvasNavbarLabel">Lista de Desejos</h5>
         </div>
         <div class="offcanvas-body ">
+          @auth
           @foreach($desejos as $desejo)
-              <li>{{ $desejo->p_id }}</li>
+          <div class="row g-2 mt-1">
+            <div class="col">
+              <div class="card ">
+                <div class="row g-0 d-flex align-items-center">
+                  <div class="col-4">
+                    <!--mudar imagem-->
+                    <img src="https://www.bing.com/images/blob?bcid=qLd2Ii-InSYFQNu98T6c-mfdDaID.....7Y" class="card-img-top" alt="...">
+                  </div>
+                  <div class="col-4">
+                    <div class="card-body">
+                      <h6 class="card-title">{{$desejo->p_nome}}</h6>
+                      <p class="card-text"><small class="text-muted">Descrição: {{$desejo->p_descricao}}</small></p>
+                      <p class="card-text"><small class="text-muted">Preço: {{$desejo->p_preco}}€</small> <br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           @endforeach
+          @endauth
         </div>
       </div>
   

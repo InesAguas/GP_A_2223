@@ -31,10 +31,17 @@ class DesejoController extends Controller
       
        
     }
-   
-    public function verDesejos(Request $request)
-    {
-        $desejos = Desejo::with('p_id')->get();
-        return view('desejos')->with('desejos', $desejos);
+
+    function getDesejos() {
+        if (Auth::check()) {
+            $id = Auth::user()->u_id;
+            if ($id != null) {
+                $desejos = Desejo::join('produtos', 'produtos.p_id', '=', 'produtos_desejos.p_id')
+                ->select('produtos_desejos.p_id', 'produtos.p_nome', 'produtos.p_preco', 'produtos.p_descricao')
+                ->where('produtos_desejos.u_id', '=', $id)
+                ->get();
+                return $desejos;
+            }  
+        }
     }
 }

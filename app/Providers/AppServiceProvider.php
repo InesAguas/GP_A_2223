@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Desejo;
+use App\Http\Controllers\DesejoController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
@@ -29,7 +32,10 @@ class AppServiceProvider extends ServiceProvider
 
             // following code will create $posts variable which we can use
             // in our post.list view you can also create more variables if needed
-            $view->with('teste', 'teste');
+                $controller = new DesejoController();
+                $desejos =  $controller->getDesejos();
+                $view->with('desejos', $desejos);
+
         });
     }
 }

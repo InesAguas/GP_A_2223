@@ -22,8 +22,4 @@ class Desejo extends Model
         'p_id',
         'u_id'
     ];
-
-    public function productID(){
-        return $this->belongsTo(Product::class);
-    }
 }
