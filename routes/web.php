@@ -75,6 +75,7 @@ Route::middleware(['auth', 'cliente'])->group(function () {
     Route::post('/utilizador/editarPerfil', [UserController::class, 'editarPerfil']);
     Route::post('/utilizador/apagarPerfil', [UserController::class, 'apagarPerfil']);
     Route::post('adicionar-desejo', [DesejoController::class, 'adicionarDesejo']);
+    Route::post('/adicionar-desejo', [DesejoController::class, 'adicionarDesejo'])->name('adicionarDesejo'); //botão da página inicial
     Route::post('adicionar-carrinho', [CarrinhoController::class, 'adicionarAoCarrinho']);
     Route::delete('desejos/{id}', [DesejoController::class, 'apagarDesejo'])->name('apagarDesejo');
 });

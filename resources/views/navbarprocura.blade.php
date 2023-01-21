@@ -47,7 +47,7 @@
         </div>
         <div class="offcanvas-body ">
           @auth
-          @foreach($desejos->reverse() as $desejo)
+          @foreach($desejos as $desejo)
           <div class="row g-2 mt-1">
             <div class="col">
               <div class="card ">
