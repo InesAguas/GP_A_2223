@@ -112,7 +112,7 @@ if ($sum > 0) {
                     </div>
                     <div class="row p-3 m-1 d-flex align-items-center bg-white">
                         <div class="col ">
-                            <form action="/adicionar-desejo" method="POST">
+                            <form action="/adicionar-carrinho" method="POST">
                                 @csrf
                                 <input type="hidden" name="id" value="{{$produto->p_id}}">
                                 <input type="submit" class="btn btn-success" value="Adicionar ao Carrinho de Compras">

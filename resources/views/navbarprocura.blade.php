@@ -37,6 +37,58 @@
           <h5 class="offcanvas-title me-5" id="offcanvasNavbarLabel">Carrinho de Compras</h5>
         </div>
         <div class="offcanvas-body ">
+          @auth
+          <p class="card-title" style="text-align:center;">Pressione o botão verde depois de alterar a quantidade</p>
+          @foreach($produtosCarrinho as $produto)
+          <div class="row g-2 mt-1">
+            <div class="col">
+              <div class="card ">
+                <div class="row g-0 d-flex align-items-center">
+                  <div class="col-4">
+                    <!--mudar imagem-->
+                    <img src="https://www.bing.com/images/blob?bcid=qLd2Ii-InSYFQNu98T6c-mfdDaID.....7Y" class="card-img-top" alt="...">
+                  </div>
+                  <div class="col-4">
+                    <div class="card-body">
+                      <h6 class="card-title">{{$produto->p_nome}}</h6>
+                      <a class="card-text"><small class="text-muted">Descrição: {{$produto->p_descricao}}</small></a>
+                      <div>
+                        <a class="card-text"><small class="text-muted">Quantidade:</small></a>
+                        <input type="number" value="{{ $produto->c_quantidade }}" name="input_value" id="input_value">
+                      </div>
+                      <p class="card-text"><small class="text-muted">Preço: {{$produto->p_preco}}€</small> <br>
+                    </div>
+                  </div>
+                  <div class="col-4 text-center">
+                    <div >
+                      <form action="{{ route('apagarProdutoCarrinho', $produto->p_id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" style="background-color: rgb(255, 255, 255, 1); border: none; cursor: pointer; outline: none;">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                          </svg>
+                        </button>
+                      </form>
+                      <form action="{{ route('atualizarQuantidade', $produto->p_id)}}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <input type="hidden" id="inputValue" name="inputValue">
+                        <button type="submit" id="submit" onclick="getInputValue();" style="background-color: rgb(255, 255, 255, 1); border: none; cursor: pointer; outline: none;">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="green" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                          </svg>
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          @endforeach
+          @endauth
+          <button>Checkout</button>
         </div>
       </div>
 
@@ -139,3 +191,27 @@
       </div>
     </div>
   </nav>
+
+  <style>
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+    display: none;
+    }
+
+    input[type="number"] {
+      min-width: 20px;
+      width: 40px;
+      text-align: center;
+    }
+    .quantity-input {
+      display: flex;
+      align-items: center;
+    }
+  </style>
+
+  <script>
+    function getInputValue(){
+      var inputVal = document.getElementById("myInput").value;
+      document.getElementById("inputValue").value= inputVal;
+    }
+  </script>

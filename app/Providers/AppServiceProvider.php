@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use App\Models\Desejo;
+
 use App\Http\Controllers\DesejoController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\CarrinhoController;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
@@ -35,6 +35,10 @@ class AppServiceProvider extends ServiceProvider
                 $controller = new DesejoController();
                 $desejos =  $controller->getDesejos();
                 $view->with('desejos', $desejos);
+
+                $controller1 = new CarrinhoController();
+                $produtosCarrinho =  $controller1->getProdutosCarrinho();
+                $view->with('produtosCarrinho', $produtosCarrinho);
 
         });
     }
