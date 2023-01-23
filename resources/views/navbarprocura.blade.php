@@ -88,7 +88,7 @@
           </div>
           @endforeach
           @endauth
-          <button>Checkout</button>
+          <a href="/utilizador/checkout"><button>Checkout</button></a>
         </div>
       </div>
 

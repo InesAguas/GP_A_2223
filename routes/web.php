@@ -87,6 +87,8 @@ Route::middleware(['auth', 'cliente'])->group(function () {
     Route::delete('carrinho/{id}', [CarrinhoController::class, 'apagarProdutoCarrinho'])->name('apagarProdutoCarrinho');
     Route::put('atualizarQuantidade/{id}', [CarrinhoController::class, 'atualizarQuantidade'])->name('atualizarQuantidade');
     Route::get('/utilizador/encomendas', [EncomendaController::class, 'verEncomendas']);
+    Route::get('/utilizador/checkout', [EncomendaController::class, 'verCheckout']);
+    Route::post('/utilizador/checkout', [EncomendaController::class, 'finalizarCheckout']);
 });
 
 

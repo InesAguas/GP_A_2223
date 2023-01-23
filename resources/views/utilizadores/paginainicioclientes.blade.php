@@ -82,7 +82,7 @@
     @endif
     <div class="col">
       <div class="card">
-        <img src="img/produtos/{{$produto->p_imagem}}" class="card-img-top" height="250" alt="{{$produto->p_nome}}">
+        <a href="produtos/{{$produto->p_id}}/detalhes"><img src="img/produtos/{{$produto->p_imagem}}" class="card-img-top" height="250" alt="{{$produto->p_nome}}"></a>
         <div class="card-body">
           <p class="card-text"><small class="text-muted">{{$produto->p_nome}}</small> <br>
             {{$produto->p_preco}} € <br>
