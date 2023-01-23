@@ -160,7 +160,7 @@ class EncomendaController extends Controller
             })->select('i_nome')->get();
         }
 
-        return view('encomendas/adminencomendas')
+        return view('encomendas/encomendascliente')
                 ->with('encomendas', $encomendas)
                 ->with('pagina', $pagina)
                 ->with('totalpaginas', $totalpaginas)

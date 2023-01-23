@@ -195,7 +195,7 @@
                 <div class="card ">
                   <div class="row g-0 d-flex align-items-center">
                     <div class="col-3">
-                      <img src="https://www.auchan.pt/dw/image/v2/BFRC_PRD/on/demandware.static/-/Sites-auchan-pt-master-catalog/default/dw70ed3673/images/hi-res/002116994.jpg" class="card-img-top" alt="...">
+                      <img src="/img/produtos/{{$encomenda->imagens[0]->i_nome}}" class="card-img-top" alt="...">
                     </div>
                     <div class="col">
                       <div class="card-body">
