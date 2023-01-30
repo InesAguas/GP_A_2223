@@ -11,20 +11,24 @@ class CarrinhoController extends Controller
 {
     public function adicionarAoCarrinho(Request $request)
     {
-        $id = CarrinhoCompras::find($request->id);
+        $id = CarrinhoCompras::where([
+            ['p_id', '=', $request->id],
+            ['u_id', '=', Auth::user()->u_id],
+        ])->first();
+        
 
-        if($id){
+        if($id && Auth::check()){
             Session::flash('alert1', 'Esse produto já existe no carrinho de compras!');
             return back();
         }else{
             $user = Auth::user();
             $id = $request->id;
     
-            $desejo = new CarrinhoCompras();
-            $desejo->p_id = $id;
-            $desejo->u_id = $user->u_id;
-            $desejo->c_quantidade = 1;
-            $desejo->save();
+            $produtoCarrinho = new CarrinhoCompras();
+            $produtoCarrinho->p_id = $id;
+            $produtoCarrinho->u_id = $user->u_id;
+            $produtoCarrinho->c_quantidade = 1;
+            $produtoCarrinho->save();
             Session::flash('success1', 'Produto adicionado com sucesso ao carrinho de compras!');
             return back();
         }
