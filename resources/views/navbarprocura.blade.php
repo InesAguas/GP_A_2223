@@ -172,13 +172,17 @@
             <li class="nav-item p-2">
               <a class="nav-link active" aria-current="page" href="{{ url('/utilizador/perfil')}}">Dados Pessoais</a>
             </li>
-            <li class="nav-item p-2">
-              <a class="nav-link active" href="{{ url('/utilizador/encomendas')}}">As minhas encomendas</a>
-            </li>
             @endif
             @if (Auth::user()->u_tipo == 2)
             <li class="nav-item p-2">
+              <a class="nav-link active" href="{{ url('/administracao/encomendas')}}">As minhas encomendas</a>
+            </li>
+            <li class="nav-item p-2">
               <a class="nav-link active" aria-current="page" href="{{ url('/produtos/verprodutos')}}">Os meus produtos</a>
+            </li>
+            @elseif(Auth::user()->u_tipo == 3)
+            <li class="nav-item p-2">
+              <a class="nav-link active" href="{{ url('/utilizador/encomendas')}}">As minhas encomendas</a>
             </li>
             @endif
             <li class="nav-item p-3">
